@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Award, Users, Clock, Shield, Star, Briefcase, CheckCircle } from 'lucide-react';
+import { Users, Clock, Shield, Star, Briefcase } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Section from '@/components/ui/Section';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -43,49 +43,37 @@ export default function AboutPage() {
 
   return (
     <>
-      <Section background="light">
+      <Section>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Breadcrumbs items={[{ label: 'О компании', href: '/about' }]} />
         </div>
-        <SectionHeader title="О компании" centered />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <SectionHeader title="О компании" subtitle="Кто мы" centered titleColor="text-white" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           <div>
-            <p className="text-gray-700 text-lg mb-4 leading-relaxed">{content.about?.history || ''}</p>
-            <p className="text-gray-600 mb-6 leading-relaxed">{content.about?.mission || ''}</p>
+            <p className="text-slate-300 text-lg mb-4 leading-relaxed">{content.about?.history || ''}</p>
+            <p className="text-slate-400 mb-6 leading-relaxed">{content.about?.mission || ''}</p>
             <div className="flex flex-wrap gap-3 mb-6">
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">{content.about?.year || ''}</span>
-              <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">{content.about?.serviceArea || ''}</span>
-            </div>
-            <div className="mb-6">
-              <h4 className="font-semibold text-gray-800 mb-2">Сертификации и стандарты:</h4>
-              <ul className="space-y-1">
-                {content.about?.certifications?.map((cert: string, i: number) => (
-                  <li key={i} className="flex items-center gap-2 text-gray-600 text-sm">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    {cert}
-                  </li>
-                ))}
-              </ul>
+              <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium border border-green-500/30">{content.about?.serviceArea || ''}</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {content.about?.stats?.map((stat: any, i: number) => (
-                <div key={i} className="bg-blue-500/10 rounded-xl p-5 text-center border border-blue-500/20 hover:bg-blue-500/20 transition-colors">
-                  <div className="text-3xl font-bold text-gray-800 mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
+                <div key={i} className="bg-slate-800/50 rounded-xl p-5 text-center border border-slate-700/50 hover:bg-slate-800/70 transition-colors">
+                  <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                  <div className="text-sm text-slate-400">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-square bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl border border-blue-500/20 flex items-center justify-center shadow-lg">
-              <span className="text-8xl">❄️</span>
+            <div className="aspect-square bg-gradient-to-br from-blue-600/20 to-cyan-500/20 rounded-2xl flex items-center justify-center border border-blue-500/30 overflow-hidden relative">
+              <img src="/images/logo.png" alt="Логотип компании" className="w-3/4 h-3/4 object-contain relative z-10" />
             </div>
-            <div className="absolute -bottom-4 -right-4 bg-white border border-gray-200 rounded-xl p-5 shadow-xl shadow-blue-500/10">
+            <div className="absolute -bottom-4 -right-4 bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-xl">
               <div className="flex items-center gap-3">
-                <Shield className="w-8 h-8 text-green-500" />
+                <Shield className="w-8 h-8 text-green-400" />
                 <div>
-                  <div className="font-semibold text-gray-800">Гарантия</div>
-                  <div className="text-sm text-gray-600">до 1 года на все работы</div>
+                  <div className="font-semibold text-white">Гарантия</div>
+                  <div className="text-sm text-slate-400">до 1 года на все работы</div>
                 </div>
               </div>
             </div>
@@ -93,32 +81,27 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section background="dark">
-        <SectionHeader title="Наши ценности" subtitle="Принципы нашей работы" centered />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <Section background="light">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl p-8 md:p-12 text-white shadow-xl shadow-blue-500/20">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">Доверьте холод профессионалам.</h3>
+            <p className="text-blue-100 mb-6 leading-relaxed">Свяжитесь с нами для бесплатной консультации, срочного выезда или заключения договора на сервисное обслуживание.</p>
+            <p className="text-white font-medium mb-4">«Федерация Холода» — ваш надёжный партнёр в Иркутске и Иркутской области.</p>
+            <p className="text-blue-100 leading-relaxed">Мы работаем с магазинами, ресторанами, складами, медицинскими и фармацевтическими компаниями, производственными предприятиями и частными клиентами.</p>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHeader title="Наши ценности" subtitle="Принципы нашей работы" centered titleColor="text-white" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {content.about?.values?.map((value: any, i: number) => (
-            <Card key={value.id} hover className="text-center p-6">
+            <Card key={value.id} hover className="text-center p-6 bg-slate-800/50 border border-slate-700/50 hover:border-blue-500/30 transition-all">
               <div className="w-16 h-16 mx-auto mb-4 bg-blue-500/10 rounded-xl flex items-center justify-center">
                 <Star className="w-8 h-8 text-blue-400" />
               </div>
               <h4 className="text-xl font-semibold text-white mb-2">{value.title}</h4>
-              <p className="text-slate-300 leading-relaxed">{value.description}</p>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      <Section background="light">
-        <SectionHeader title="Сертификаты и лицензии" subtitle="Официальные документы" centered />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {content.about?.certificates?.map((cert: any, i: number) => (
-            <Card key={cert.id} hover className="text-center p-6">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/30">
-                <Award className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">{cert.name}</h4>
-              <p className="text-blue-600 font-medium mb-2">{cert.number}</p>
-              <p className="text-gray-600 text-sm">{cert.issuedBy}</p>
+              <p className="text-slate-400 leading-relaxed">{value.description}</p>
             </Card>
           ))}
         </div>
@@ -126,16 +109,27 @@ export default function AboutPage() {
 
       <Section background="light">
         <SectionHeader title="Наша команда" subtitle="Профессионалы своего дела" centered />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {content.about?.team?.map((member: any, i: number) => (
-            <Card key={member.id} hover className="text-center p-6">
-              <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center shadow-lg shadow-blue-500/30">
-                <Users className="w-10 h-10 text-white" />
-              </div>
-              <h4 className="text-xl font-semibold text-gray-800 mb-1">{member.name}</h4>
-              <p className="text-blue-600 font-medium mb-2">{member.position}</p>
-              <p className="text-gray-600 text-sm leading-relaxed">{member.experience}</p>
-            </Card>
+            <motion.div
+              key={member.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Card hover className="bg-white border border-gray-200 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
+                <div className="flex items-center gap-6 p-6">
+                  <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                    <Users className="w-12 h-12 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{member.name}</h4>
+                    <p className="text-blue-600 font-medium text-lg">{member.position}</p>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </Section>

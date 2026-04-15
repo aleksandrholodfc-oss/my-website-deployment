@@ -105,7 +105,7 @@ export default function IndustrialEquipmentPage() {
     <>
       <Section>
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <SectionHeader title="Промышленное холодильное оборудование" subtitle="Сложный ремонт" centered />
+          <SectionHeader title="Промышленное холодильное оборудование" subtitle="Сложный ремонт" centered titleColor="text-white" />
           <p className="text-slate-400 text-lg">
             Профессиональный ремонт и обслуживание промышленных систем охлаждения и холодильных установок на предприятиях.
             Работаем с оборудованием любой мощности: от небольших чиллеров до крупных центральных холодоснабжающих станций.
@@ -168,33 +168,33 @@ export default function IndustrialEquipmentPage() {
 
       <Section background="light">
         <SectionHeader title="Виды услуг" subtitle="Что мы ремонтируем" centered />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {services.map((service, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
             >
-              <Card hover className="h-full">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Wrench className="w-6 h-6 text-blue-400" />
+              <Card hover className="h-full bg-gradient-to-br from-white to-blue-50/30 border border-blue-100 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
+                <div className="flex items-start gap-5 p-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/30">
+                    <Wrench className="w-8 h-8 text-white" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{service.name}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{service.description}</p>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.name}</h3>
+                    <p className="text-gray-700 leading-relaxed mb-4">{service.description}</p>
+                    <ul className="space-y-2">
+                      {service.details.map((detail, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
+                          <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-                <ul className="space-y-2">
-                  {service.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
-                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
               </Card>
             </motion.div>
           ))}

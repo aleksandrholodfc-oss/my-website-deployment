@@ -6,9 +6,10 @@ interface SectionHeaderProps {
   subtitle?: string;
   description?: string;
   centered?: boolean;
+  titleColor?: string;
 }
 
-export default function SectionHeader({ title, subtitle, description, centered = false }: SectionHeaderProps) {
+export default function SectionHeader({ title, subtitle, description, centered = false, titleColor }: SectionHeaderProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -22,7 +23,7 @@ export default function SectionHeader({ title, subtitle, description, centered =
           {subtitle}
         </span>
       )}
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dark-900 mb-4">
+      <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${titleColor || 'text-dark-900'}`}>
         {title}
       </h2>
       {description && (

@@ -4,7 +4,6 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Script from 'next/script';
-import WhatsAppWidget from '@/components/WhatsAppWidget';
 
 const inter = Inter({ subsets: ['cyrillic', 'latin'] });
 
@@ -129,7 +128,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main className="flex-1 pt-16">{children}</main>
           <Footer />
-          <WhatsAppWidget />
         </div>
       </body>
     </html>

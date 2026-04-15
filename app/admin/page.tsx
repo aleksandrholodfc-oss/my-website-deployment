@@ -803,6 +803,18 @@ export default function AdminPage() {
                           placeholder="URL изображения (например, /images/gallery/camera-repair.jpg)"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
+                        <select
+                          value={item.category || 'all'}
+                          onChange={(e) => updateContent(`gallery.${index}.category`, e.target.value)}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                        >
+                          <option value="all">Все</option>
+                          <option value="trade">Торговое оборудование</option>
+                          <option value="industrial">Промышленное оборудование</option>
+                          <option value="climate">Климатическое оборудование</option>
+                          <option value="auto">Автокондиционеры</option>
+                          <option value="refrigerator">Рефрижераторы</option>
+                        </select>
                       </div>
                     </div>
                   ))}

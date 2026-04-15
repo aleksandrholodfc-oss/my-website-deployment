@@ -3,18 +3,24 @@
 import React, { useState } from 'react';
 import { Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 interface SearchBarProps {
-  onSearch: (query: string) => void;
+  onSearch?: (query: string) => void;
 }
 
 export default function SearchBar({ onSearch }: SearchBarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(query);
+    if (query.trim()) {
+      router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+      setIsOpen(false);
+      setQuery('');
+    }
   };
 
   return (

@@ -32,7 +32,6 @@ export default function Header() {
     { href: '/services', label: 'Услуги' },
     { href: '/about', label: 'О компании' },
     { href: '/gallery', label: 'Галерея' },
-    { href: '/blog', label: 'Блог' },
     { href: '/contacts', label: 'Контакты' },
   ];
 
@@ -69,7 +68,7 @@ export default function Header() {
             </nav>
 
             <div className="hidden md:flex items-center gap-4">
-              <SearchBar onSearch={(query) => console.log('Search:', query)} />
+              <SearchBar />
               <div className="flex items-center gap-3">
                 <a href={`tel:${phone}`} className="flex items-center gap-2 px-4 py-2 bg-slate-800/50 border-2 border-blue-500/30 rounded-lg text-white hover:border-blue-500/60 hover:bg-slate-800/70 transition-all font-medium">
                   <Phone className="w-4 h-4 text-blue-400" />

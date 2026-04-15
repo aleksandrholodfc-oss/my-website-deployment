@@ -121,32 +121,35 @@ export default function ServicesPage() {
         </div>
       </Section>
 
-      <Section>
+      <Section background="light">
         <SectionHeader title="Виды оборудования" subtitle="Что мы ремонтируем" centered />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {content.services.map((service: any, i: number) => {
             const slug = serviceSlugs[service.category];
             return (
               <Link key={service.id} href={slug ? `/services/${slug}` : '#'}>
-                <Card hover className="h-full cursor-pointer">
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-white mb-3">{service.category}</h3>
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+                  <Card hover className="h-full cursor-pointer flex flex-col p-8 bg-gradient-to-br from-blue-50/50 to-cyan-50/50 border border-blue-200 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg mb-6">
+                      <Snowflake className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{service.category}</h3>
                     {service.description && (
-                      <p className="text-slate-400 text-sm mb-4 leading-relaxed">{service.description}</p>
+                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">{service.description}</p>
                     )}
-                    <ul className="space-y-2 mb-4">
+                    <ul className="space-y-2 mb-4 flex-grow">
                       {service.items.map((item: string, idx: number) => (
-                        <li key={idx} className="flex items-start gap-2 text-slate-300 text-sm">
+                        <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm">
                           <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
-                    <div className="flex items-center text-blue-400 font-medium">
+                    <div className="flex items-center text-blue-600 font-medium mt-auto">
                       Подробнее <ArrowRight className="w-4 h-4 ml-2" />
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </motion.div>
               </Link>
             );
           })}

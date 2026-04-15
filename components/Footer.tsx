@@ -20,7 +20,6 @@ export default function Footer() {
     { href: '/services', label: 'Услуги' },
     { href: '/about', label: 'О компании' },
     { href: '/gallery', label: 'Галерея' },
-    { href: '/blog', label: 'Блог' },
     { href: '/contacts', label: 'Контакты' },
   ];
 
