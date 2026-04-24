@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Search, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -8,7 +8,7 @@ import Section from '@/components/ui/Section';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
-export default function SearchPage() {
+function SearchContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const query = searchParams.get('q') || '';
@@ -121,5 +121,23 @@ export default function SearchPage() {
         </div>
       </Section>
     </>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <Section>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <Breadcrumbs items={[{ label: 'Поиск', href: '/search' }]} />
+        </div>
+        <SectionHeader title="Поиск по сайту" subtitle="Результаты поиска" centered titleColor="text-white" />
+        <div className="max-w-4xl mx-auto text-center py-12">
+          <div className="text-xl text-gray-600">Загрузка...</div>
+        </div>
+      </Section>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }
