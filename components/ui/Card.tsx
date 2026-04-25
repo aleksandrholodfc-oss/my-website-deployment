@@ -1,12 +1,12 @@
 'use client';
-import { forwardRef, HTMLAttributes } from 'react';
-import { motion } from 'framer-motion';
+import { forwardRef } from 'react';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)); }
 
-export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   hover?: boolean; delay?: number;
 }
 

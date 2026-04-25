@@ -1,12 +1,12 @@
 'use client';
-import { forwardRef, ButtonHTMLAttributes } from 'react';
-import { motion } from 'framer-motion';
+import { forwardRef } from 'react';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)); }
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends Omit<HTMLMotionProps<'button'>, 'ref'> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
 }

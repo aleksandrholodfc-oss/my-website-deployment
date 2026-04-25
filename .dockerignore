@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.gitignore
+README.md
+DEPLOY_BEGET.md
+Dockerfile
+.dockerignore
+*.tar.gz
+*.zip
