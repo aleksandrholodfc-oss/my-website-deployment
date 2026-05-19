@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Save, Home, Wrench, DollarSign, Building2, Settings, LogOut, Image, Users, Star, Info, Lock } from 'lucide-react';
 import Link from 'next/link';
@@ -15,7 +15,7 @@ export default function AdminPage() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
 
-  const checkAuth = async () => {
+  const checkAuth = useCallback(async () => {
     try {
       const response = await fetch('/api/admin/login');
       const data = await response.json();
@@ -29,11 +29,11 @@ export default function AdminPage() {
       console.error('Auth check error:', error);
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     checkAuth();
-  }, []);
+  }, [checkAuth]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,6 +101,9 @@ export default function AdminPage() {
     const newContent = { ...content };
     let current: any = newContent;
     for (let i = 0; i < keys.length - 1; i++) {
+      if (!current[keys[i]]) {
+        current[keys[i]] = {};
+      }
       current = current[keys[i]];
     }
     current[keys[keys.length - 1]] = value;
@@ -151,6 +154,14 @@ export default function AdminPage() {
             </Link>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  if (!content) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="text-xl">Ошибка загрузки данных</div>
       </div>
     );
   }
@@ -242,7 +253,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Заголовок</label>
                     <input
                       type="text"
-                      value={content.hero.title}
+                      value={content.hero?.title || ''}
                       onChange={(e) => updateContent('hero.title', e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
@@ -251,7 +262,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Подзаголовок</label>
                     <input
                       type="text"
-                      value={content.hero.subtitle}
+                      value={content.hero?.subtitle || ''}
                       onChange={(e) => updateContent('hero.subtitle', e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
@@ -259,7 +270,7 @@ export default function AdminPage() {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Описание</label>
                     <textarea
-                      value={content.hero.description}
+                      value={content.hero?.description || ''}
                       onChange={(e) => updateContent('hero.description', e.target.value)}
                       rows={4}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
@@ -269,7 +280,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Текст кнопки</label>
                     <input
                       type="text"
-                      value={content.hero.cta}
+                      value={content.hero?.cta || ''}
                       onChange={(e) => updateContent('hero.cta', e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
@@ -278,7 +289,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Изображение (URL)</label>
                     <input
                       type="text"
-                      value={content.hero.image}
+                      value={content.hero?.image || ''}
                       onChange={(e) => updateContent('hero.image', e.target.value)}
                       placeholder="/images/hero-bg.jpg"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -288,7 +299,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Телефон</label>
                     <input
                       type="text"
-                      value={content.hero.phone}
+                      value={content.hero?.phone || ''}
                       onChange={(e) => updateContent('hero.phone', e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
@@ -297,7 +308,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <input
                       type="email"
-                      value={content.hero.email || ''}
+                      value={content.hero?.email || ''}
                       onChange={(e) => updateContent('hero.email', e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
@@ -307,7 +318,7 @@ export default function AdminPage() {
 
               {activeTab === 'advantages' && (
                 <div className="space-y-4">
-                  {content.advantages.map((adv: any, index: number) => (
+                  {content.advantages?.map((adv: any, index: number) => (
                     <div key={adv.id} className="p-4 border border-gray-200 rounded-lg">
                       <h3 className="font-bold mb-2">Преимущество #{index + 1}</h3>
                       <div className="space-y-2">
@@ -333,7 +344,7 @@ export default function AdminPage() {
 
               {activeTab === 'services' && (
                 <div className="space-y-4">
-                  {content.services.map((service: any, index: number) => (
+                  {content.services?.map((service: any, index: number) => (
                     <div key={service.id} className="p-4 border border-gray-200 rounded-lg">
                       <h3 className="font-bold mb-2">Категория #{index + 1}</h3>
                       <div className="space-y-2">
@@ -375,7 +386,7 @@ export default function AdminPage() {
 
               {activeTab === 'priceList' && (
                 <div className="space-y-4">
-                  {content.priceList.map((category: any, catIndex: number) => (
+                  {content.priceList?.map((category: any, catIndex: number) => (
                     <div key={catIndex} className="p-4 border border-gray-200 rounded-lg">
                       <h3 className="font-bold mb-4">{category.category}</h3>
                       {category.items.map((item: any, itemIndex: number) => (
@@ -556,7 +567,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Телефон</label>
                     <input
                       type="text"
-                      value={content.contacts.phone}
+                      value={content.contacts?.phone || ''}
                       onChange={(e) => updateContent('contacts.phone', e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
@@ -565,7 +576,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Городской телефон</label>
                     <input
                       type="text"
-                      value={content.contacts.phoneCity || ''}
+                      value={content.contacts?.phoneCity || ''}
                       onChange={(e) => updateContent('contacts.phoneCity', e.target.value)}
                       placeholder="+7 (3952) 41-66-33"
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
@@ -575,7 +586,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <input
                       type="email"
-                      value={content.contacts.email}
+                      value={content.contacts?.email || ''}
                       onChange={(e) => updateContent('contacts.email', e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
@@ -584,7 +595,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Адрес</label>
                     <input
                       type="text"
-                      value={content.contacts.address}
+                      value={content.contacts?.address || ''}
                       onChange={(e) => updateContent('contacts.address', e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />
@@ -593,7 +604,7 @@ export default function AdminPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Время работы</label>
                     <input
                       type="text"
-                      value={content.contacts.hours}
+                      value={content.contacts?.hours || ''}
                       onChange={(e) => updateContent('contacts.hours', e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                     />

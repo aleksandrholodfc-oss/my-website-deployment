@@ -6,14 +6,14 @@
     "cta": "Вызвать мастера",
     "phone": "+7 (914) 8866774",
     "email": "Federation-cold@mail.ru",
-    "image": "/images/hero-bg.jpg",
+    "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80",
     "badge": "🚨 Срочный выезд 24/7"
   },
   "equipmentImages": {
-    "trade": "/images/torgovoe.jpg",
-    "industrial": "/images/prom.jpg",
-    "climate": "/images/klimatika.jpg",
-    "auto": "/images/auto.jpg"
+    "trade": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80",
+    "industrial": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
+    "climate": "https://images.unsplash.com/photo-1520699478448-3d1c8e4b2b0c?w=800&q=80",
+    "auto": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80"
   },
   "promotions": [
     {
@@ -779,12 +779,6 @@
         "issuedBy": "Министерство образования"
       }
     ],
-    "stats": [
-      { "value": "10+", "label": "Лет опыта" },
-      { "value": "5000+", "label": "Выполненных работ" },
-      { "value": "98%", "label": "Довольных клиентов" },
-      { "value": "24/7", "label": "Поддержка" }
-    ],
     "values": [
       {
         "id": 1,
@@ -855,37 +849,37 @@
       "id": 1,
       "title": "Ремонт холодильной камеры",
       "description": "Замена компрессора в промышленной холодильной камере",
-      "image": "/images/gallery/camera-repair.jpg"
+      "image": "/images/prom.jpg"
     },
     {
       "id": 2,
       "title": "Обслуживание чиллера",
       "description": "Плановое обслуживание чиллерной установки",
-      "image": "/images/gallery/chiller.jpg"
+      "image": "/images/prom.jpg"
     },
     {
       "id": 3,
       "title": "Ремонт рефрижератора",
       "description": "Ремонт холодильной установки грузовика",
-      "image": "/images/gallery/truck-refrigerator.jpg"
+      "image": "/images/ref.png"
     },
     {
       "id": 4,
       "title": "Монтаж кондиционера",
       "description": "Установка мультисплит-системы в офисе",
-      "image": "/images/gallery/ac-install.jpg"
+      "image": "/images/klimatika.jpg"
     },
     {
       "id": 5,
       "title": "Заправка фреоном",
       "description": "Заправка автокондиционера фреоном",
-      "image": "/images/gallery/freon-refill.jpg"
+      "image": "/images/auto.jpg"
     },
     {
       "id": 6,
       "title": "Диагностика оборудования",
       "description": "Поиск утечки в системе охлаждения",
-      "image": "/images/gallery/diagnostics.jpg"
+      "image": "/images/torgovoe.jpg"
     }
   ],
   "testimonials": [
@@ -931,19 +925,25 @@
   "contacts": {
     "phone": "+7 (914) 8866774",
     "phoneCity": "+7 (3952) 41-66-33",
-    "email": "Federation-cold@mail.ru",
-    "address": "Иркутск",
+    "email": "federation-cold@mail.ru",
+    "address": "Иркутская область, Иркутский район, г.п. Марковское, рп Маркова, мкр. Березовый, д. 149, кв. 9",
     "hours": "24/7, без выходных",
     "mapUrl": "https://yandex.ru/map-widget/v1/?um=constructor%3A1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7&source=constructor",
-    "inn": "7701234567",
-    "ogrn": "1234567890123",
-    "bankAccount": "40702810000000000001",
-    "bankName": "ПАО СБЕРБАНК",
-    "bik": "044525225"
+    "inn": "3808291878",
+    "kpp": "380801001",
+    "ogrn": "1255800006162",
+    "bankAccount": "40702810725580002847",
+    "bankName": "ФИЛИАЛ \"НОВОСИБИРСКИЙ\" АО \"АЛЬФА-БАНК\"",
+    "bik": "045004774",
+    "correspondentAccount": "30101810600000000774"
   },
   "company": {
     "name": "Федерация Холода",
+    "fullName": "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ КОНФЕДЕРАЦИЯ ХОЛОДА",
+    "shortName": "Федерация Холода",
     "description": "Профессиональный ремонт и обслуживание холодильного и климатического оборудования.",
-    "logo": "/images/logo.png"
+    "logo": "/images/logo.png",
+    "director": "Семенов Александр Александрович",
+    "website": "федерация-холода.рф"
   }
 }

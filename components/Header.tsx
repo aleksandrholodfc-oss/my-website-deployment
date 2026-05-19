@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import CallbackModal from '@/components/CallbackModal';
 import SearchBar from '@/components/SearchBar';
+import { LOGO_SRC } from '@/lib/images';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,7 +38,7 @@ export default function Header() {
 
   const phone = content?.contacts?.phone || '+7 (914) 8866774';
   const companyName = content?.company?.name || 'Федерация Холода';
-  const logo = content?.company?.logo || '/images/logo.png';
+  const logo = content?.company?.logo || LOGO_SRC;
 
   return (
     <>
@@ -51,7 +52,7 @@ export default function Header() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16">
             <Link href="/" className="flex items-center gap-2">
-              <Image src={logo} alt={companyName} width={64} height={64} className="object-contain w-10 h-10 sm:w-12 sm:h-12" />
+              <Image src={logo} alt={companyName} width={128} height={128} className="object-contain w-20 h-20 sm:w-24 sm:h-24" />
               <span className="text-white font-bold text-sm sm:text-lg hidden sm:block">{companyName}</span>
             </Link>
 
@@ -77,15 +78,11 @@ export default function Header() {
                   <span className="hidden sm:inline">{phone}</span>
                   <span className="sm:hidden">📞</span>
                 </a>
-                <a href={`mailto:${content?.contacts?.email || 'info@federatsiya-holoda.ru'}`} className="hidden sm:flex items-center gap-2 px-4 py-2 bg-slate-800/50 border-2 border-blue-500/30 rounded-lg text-white hover:border-blue-500/60 hover:bg-slate-800/70 transition-all font-medium">
+                <a href={`mailto:${content?.contacts?.email || 'info@федерация-холода.рф'}`} className="hidden sm:flex items-center gap-2 px-4 py-2 bg-slate-800/50 border-2 border-blue-500/30 rounded-lg text-white hover:border-blue-500/60 hover:bg-slate-800/70 transition-all font-medium">
                   <Mail className="w-4 h-4 text-blue-400" />
-                  <span className="hidden lg:inline">Email</span>
+                  <span className="hidden lg:inline">Federation-cold@mail.ru</span>
                 </a>
               </div>
-              <button onClick={() => setIsCallbackOpen(true)} className="px-3 sm:px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium border border-blue-500/30 text-xs sm:text-sm">
-                <span className="hidden sm:inline">Заказать звонок</span>
-                <span className="sm:hidden">📞</span>
-              </button>
             </div>
 
             <button

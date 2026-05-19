@@ -6,5 +6,6 @@ README.md
 DEPLOY_BEGET.md
 Dockerfile
 .dockerignore
+docker-compose.yml
 *.tar.gz
 *.zip

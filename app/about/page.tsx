@@ -1,46 +1,32 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { Metadata } from 'next';
+import fs from 'fs/promises';
+import path from 'path';
+import React from 'react';
 import { Users, Clock, Shield, Star, Briefcase } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Section from '@/components/ui/Section';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Image from 'next/image';
+import { LOGO_SRC } from '@/lib/images';
 
-export default function AboutPage() {
-  const [content, setContent] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+export const metadata: Metadata = {
+  title: 'О компании — Федерация Холода',
+  description: 'Федерация Холода — профессиональный ремонт холодильного оборудования в Иркутске с 2014 года. Более 10 лет опыта, 5000+ выполненных работ.',
+  keywords: 'Федерация Холода, о компании, ремонт холодильного оборудования Иркутск, история компании',
+  alternates: {
+    canonical: 'https://федерация-холода.рф/about',
+  },
+};
 
-  useEffect(() => {
-    fetch('/api/content')
-      .then(res => res.json())
-      .then(data => {
-        setContent(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Failed to load content:', err);
-        setLoading(false);
-      });
-  }, []);
+async function getContent() {
+  const CONTENT_FILE = path.join(process.cwd(), 'data', 'content.json');
+  const data = await fs.readFile(CONTENT_FILE, 'utf-8');
+  return JSON.parse(data);
+}
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
-        <div className="text-xl">Загрузка...</div>
-      </div>
-    );
-  }
-
-  if (!content) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
-        <div className="text-xl">Ошибка загрузки данных</div>
-      </div>
-    );
-  }
+export default async function AboutPage() {
+  const content = await getContent();
 
   return (
     <>
@@ -54,24 +40,27 @@ export default function AboutPage() {
             <p className="text-slate-300 text-sm sm:text-base lg:text-lg mb-3 sm:mb-4 leading-relaxed">{content.about?.history || ''}</p>
             <p className="text-slate-400 text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed">{content.about?.mission || ''}</p>
             <div className="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
-              <span className="bg-green-500/20 text-green-400 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium border border-green-500/30">{content.about?.serviceArea || ''}</span>
+              <span className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-400 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium border border-green-500/30 backdrop-blur-sm">{content.about?.serviceArea || ''}</span>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {content.about?.stats?.map((stat: any, i: number) => (
-                <div key={i} className="bg-slate-800/50 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center border border-slate-700/50 hover:bg-slate-800/70 transition-colors">
-                  <div className="text-2xl sm:text-3xl font-bold text-white mb-1">{stat.value}</div>
+                <div key={i} className="bg-gradient-to-br from-slate-800/70 to-slate-900/80 rounded-lg sm:rounded-xl p-3 sm:p-5 text-center border border-slate-700/60 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1">
+                  <div className="text-2xl sm:text-3xl font-bold text-white mb-1 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">{stat.value}</div>
                   <div className="text-xs sm:text-sm text-slate-400">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
           <div className="relative order-first lg:order-last">
-            <div className="aspect-square bg-gradient-to-br from-blue-600/20 to-cyan-500/20 rounded-xl sm:rounded-2xl flex items-center justify-center border border-blue-500/30 overflow-hidden relative">
-              <Image src="/images/logo.png" alt="Логотип компании" width={200} height={200} className="w-3/4 h-3/4 object-contain relative z-10" />
+            <div className="aspect-square bg-gradient-to-br from-blue-600/30 via-purple-500/20 to-cyan-500/30 rounded-xl sm:rounded-2xl flex items-center justify-center border border-blue-500/40 overflow-hidden relative shadow-2xl shadow-blue-500/20">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
+              <Image src={LOGO_SRC} alt="Логотип компании" width={200} height={200} className="w-3/4 h-3/4 object-contain relative z-10" />
             </div>
-            <div className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-slate-800 border border-slate-700 rounded-lg sm:rounded-xl p-3 sm:p-5 shadow-xl">
+            <div className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-lg sm:rounded-xl p-3 sm:p-5 shadow-xl shadow-blue-500/20">
               <div className="flex items-center gap-2 sm:gap-3">
-                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-green-400" />
+                <div className="bg-green-500/20 p-2 rounded-lg">
+                  <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-green-400" />
+                </div>
                 <div>
                   <div className="font-semibold text-white text-sm sm:text-base">Гарантия</div>
                   <div className="text-xs sm:text-sm text-slate-400">до 1 года на все работы</div>
@@ -112,12 +101,8 @@ export default function AboutPage() {
         <SectionHeader title="Наша команда" subtitle="Профессионалы своего дела" centered />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 max-w-4xl mx-auto">
           {content.about?.team?.map((member: any, i: number) => (
-            <motion.div
+            <div
               key={member.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
             >
               <Card hover className="bg-white border border-gray-200 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
                 <div className="flex items-center gap-4 sm:gap-6 p-4 sm:p-6">
@@ -130,7 +115,7 @@ export default function AboutPage() {
                   </div>
                 </div>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       </Section>

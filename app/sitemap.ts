@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://federatsiya-holoda.ru';
+  const baseUrl = 'https://федерация-холода.рф';
 
   return [
     {
