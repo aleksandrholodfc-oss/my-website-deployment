@@ -49,6 +49,7 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
   const [showAll, setShowAll] = useState(false);
 
   const visiblePrices = showAll ? cfg.prices : cfg.prices.slice(0, PRICE_PREVIEW);
+  const tel = cfg.phone.replace(/\D/g, '').replace(/^8/, '+7');
 
   return (
     <>
@@ -76,7 +77,7 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
               {cfg.heroDesc}
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <a href={`tel:${cfg.phone.replace(/\D/g, '').replace(/^8/, '+7')}`}>
+              <a href={`tel:${tel}`}>
                 <button className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl transition-colors">
                   <Phone className="w-4 h-4" /> Вызвать мастера
                 </button>
@@ -285,7 +286,7 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">{cfg.ctaTitle}</h2>
             <p className="text-slate-400 mb-8 max-w-xl mx-auto">{cfg.ctaDesc}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href={`tel:${cfg.phone.replace(/\D/g, '').replace(/^8/, '+7')}`}>
+              <a href={`tel:${tel}`}>
                 <button className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 py-3 rounded-xl transition-colors">
                   <Phone className="w-4 h-4" /> {cfg.phone}
                 </button>
