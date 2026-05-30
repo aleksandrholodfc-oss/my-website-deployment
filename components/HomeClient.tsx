@@ -41,10 +41,10 @@ export default function HomeClient({ content }: HomeClientProps) {
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-950/40 to-slate-900 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-cyan-600/15 via-transparent to-transparent" />
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-blue-500/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-56 h-56 sm:w-80 sm:h-80 bg-cyan-500/25 rounded-full blur-3xl animate-pulse delay-700" />
-        <div className="absolute top-1/2 left-1/3 w-48 h-48 sm:w-72 sm:h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1400" />
-        <div className="absolute top-1/3 right-1/3 w-40 h-40 sm:w-64 sm:h-64 bg-indigo-500/15 rounded-full blur-3xl animate-pulse delay-2100" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-blue-500/30 rounded-full blur-3xl animate-soft-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-56 h-56 sm:w-80 sm:h-80 bg-cyan-500/25 rounded-full blur-3xl animate-soft-float [animation-delay:1.2s]" />
+        <div className="absolute top-1/2 left-1/3 w-48 h-48 sm:w-72 sm:h-72 bg-purple-500/20 rounded-full blur-3xl animate-soft-float [animation-delay:2.1s]" />
+        <div className="absolute top-1/3 right-1/3 w-40 h-40 sm:w-64 sm:h-64 bg-indigo-500/15 rounded-full blur-3xl animate-soft-float [animation-delay:3s]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <motion.span 
@@ -59,7 +59,7 @@ export default function HomeClient({ content }: HomeClientProps) {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4 sm:mb-6 leading-[1.08] tracking-tight bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent"
             >
               {content.hero.title}
             </motion.h1>
@@ -75,12 +75,12 @@ export default function HomeClient({ content }: HomeClientProps) {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2 sm:px-4"
             >
               <Button size="lg" onClick={() => setIsRequestModalOpen(true)} className="w-full sm:w-auto text-sm sm:text-base bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 shadow-lg shadow-blue-500/30">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" /> {content.hero.cta}
               </Button>
-              <a href="/services">
+              <a href="/services" className="w-full sm:w-auto">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto text-sm sm:text-base border-blue-400/50 hover:bg-blue-500/20 hover:border-blue-400">
                   Наши услуги <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Button>

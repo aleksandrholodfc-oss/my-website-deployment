@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Phone, Mail, User, FileText } from 'lucide-react';
+import Link from 'next/link';
 
 interface RequestModalProps {
   isOpen: boolean;
@@ -15,25 +16,42 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
     email: '',
     description: '',
   });
+  const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
+  const [csrfToken, setCsrfToken] = useState('');
+
+  useEffect(() => {
+    if (isOpen) {
+      fetch('/api/csrf')
+        .then(res => res.json())
+        .then(data => setCsrfToken(data.token))
+        .catch(err => console.error('Failed to fetch CSRF token:', err));
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!consent) {
+      setMessage('Необходимо согласие на обработку персональных данных');
+      return;
+    }
     setIsSubmitting(true);
+    setMessage('');
 
     try {
       const response = await fetch('/api/request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, csrfToken }),
       });
 
       if (response.ok) {
         setMessage('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
         setFormData({ name: '', phone: '', email: '', description: '' });
+        setConsent(false);
         setTimeout(() => {
           onClose();
           setMessage('');
@@ -129,6 +147,28 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
             </div>
           </div>
 
+          <div>
+            <label className="flex items-start gap-3 text-xs text-gray-500 leading-relaxed">
+              <input
+                type="checkbox"
+                checked={consent}
+                onChange={(e) => setConsent(e.target.checked)}
+                className="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              <span>
+                Я ознакомлен с{' '}
+                <Link href="/privacy" className="text-blue-600 hover:text-blue-700 underline">
+                  Политикой конфиденциальности
+                </Link>
+                {' '}и{' '}
+                <Link href="/terms" className="text-blue-600 hover:text-blue-700 underline">
+                  Пользовательским соглашением
+                </Link>
+                , даю согласие на обработку персональных данных
+              </span>
+            </label>
+          </div>
+
           <button
             type="submit"
             disabled={isSubmitting}
@@ -136,13 +176,6 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
           >
             {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
           </button>
-
-          <p className="text-xs text-gray-500 text-center">
-            Нажимая кнопку, вы соглашаетесь с{' '}
-            <a href="/privacy" className="text-blue-600 hover:underline">
-              политикой конфиденциальности
-            </a>
-          </p>
         </form>
       </div>
     </div>

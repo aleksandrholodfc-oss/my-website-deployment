@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 function WhatsAppIcon() {
   return (
@@ -21,9 +22,7 @@ function TelegramIcon() {
 
 function MaxIcon() {
   return (
-    <svg viewBox="0 0 40 40" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
-      <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" fill="white" fontFamily="Arial Black, sans-serif" fontWeight="900" fontSize="17">MAX</text>
-    </svg>
+    <Image src="/images/max-icon.png" alt="" width={30} height={30} className="rounded-lg" aria-hidden="true" />
   );
 }
 
@@ -46,8 +45,8 @@ const buttons = [
   },
   {
     key: 'max',
-    href: 'https://max.ru/',
-    label: 'MAX',
+    href: 'https://max.ru/u/f9LHodD0cOJy0uyCuemJ0a6GmVAqgSGUuewD4rPLGbX-QKQsGz3vO6ke3o8',
+    label: 'Написать в MAX',
     icon: <MaxIcon />,
     className: 'bg-[#7C3AED] hover:bg-[#6d28d9] shadow-[0_4px_20px_rgba(124,58,237,0.4)]',
     delay: 0.14,
@@ -56,7 +55,7 @@ const buttons = [
 
 export default function FloatingButtons() {
   return (
-    <div className="fixed bottom-6 right-4 z-40 flex flex-col gap-3">
+    <div className="fixed bottom-4 right-3 z-40 flex flex-col gap-2.5 sm:bottom-6 sm:right-4 sm:gap-3">
       {buttons.map((btn) => (
         <motion.a
           key={btn.key}
@@ -65,10 +64,10 @@ export default function FloatingButtons() {
           rel="noopener noreferrer"
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: btn.delay, type: 'spring', stiffness: 260, damping: 20 }}
-          whileHover={{ scale: 1.12, y: -2 }}
+          transition={{ delay: btn.delay, type: 'spring', stiffness: 240, damping: 22 }}
+          whileHover={{ scale: 1.1, y: -3 }}
           whileTap={{ scale: 0.94 }}
-          className={`flex h-[52px] w-[52px] items-center justify-center rounded-2xl text-white transition-all duration-200 ${btn.className}`}
+          className={`flex h-12 w-12 items-center justify-center rounded-2xl text-white transition-all duration-300 sm:h-[52px] sm:w-[52px] ${btn.className}`}
           aria-label={btn.label}
           title={btn.label}
         >

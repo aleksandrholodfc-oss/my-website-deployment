@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import Link from 'next/link';
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: '', phone: '', message: '' });
+  const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [csrfToken, setCsrfToken] = useState('');
@@ -45,6 +47,7 @@ export default function ContactForm() {
     if (!form.name.trim()) e.name = 'Введите имя';
     if (!/^[\d\+\s\-\(\)]{10,}$/.test(form.phone)) e.phone = 'Некорректный телефон';
     if (form.message.length < 10) e.message = 'Опишите задачу подробнее';
+    if (!consent) e.consent = 'Необходимо согласие на обработку персональных данных';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -67,6 +70,7 @@ export default function ContactForm() {
       if (data.success) {
         setSubmitted(true);
         setForm({ name: '', phone: '', message: '' });
+        setConsent(false);
         setTimeout(() => setSubmitted(false), 5000);
       } else {
         alert('Ошибка отправки. Пожалуйста, позвоните нам.');
@@ -125,9 +129,28 @@ export default function ContactForm() {
           <Button type="submit" className="w-full text-sm sm:text-base">
             <Send className="w-4 h-4 mr-2" /> Отправить заявку
           </Button>
-          <p className="text-xs text-gray-500 text-center leading-relaxed">
-            Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных
-          </p>
+          <div>
+            <label className="flex items-start gap-3 text-xs text-gray-500 leading-relaxed">
+              <input
+                type="checkbox"
+                checked={consent}
+                onChange={(e) => setConsent(e.target.checked)}
+                className="mt-0.5 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              />
+              <span>
+                Я ознакомлен с{' '}
+                <Link href="/privacy" className="text-blue-600 hover:text-blue-700 underline">
+                  Политикой конфиденциальности
+                </Link>
+                {' '}и{' '}
+                <Link href="/terms" className="text-blue-600 hover:text-blue-700 underline">
+                  Пользовательским соглашением
+                </Link>
+                , даю согласие на обработку персональных данных
+              </span>
+            </label>
+            {errors.consent && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.consent}</p>}
+          </div>
         </form>
       )}
     </>

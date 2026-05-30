@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Phone, Send, CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 interface CallbackModalProps {
   isOpen: boolean;
@@ -11,6 +12,7 @@ interface CallbackModalProps {
 
 export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
   const [form, setForm] = useState({ name: '', phone: '' });
+  const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -52,6 +54,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
     const e: { [key: string]: string } = {};
     if (!form.name.trim()) e.name = 'Введите имя';
     if (!/^[\d\+\s\-\(\)]{10,}$/.test(form.phone)) e.phone = 'Некорректный телефон';
+    if (!consent) e.consent = 'Необходимо согласие';
     setError(Object.keys(e).length > 0 ? 'Пожалуйста, заполните все поля корректно' : '');
     return Object.keys(e).length === 0;
   };
@@ -171,6 +174,28 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                     />
                   </div>
 
+                  <div>
+                    <label className="flex items-start gap-3 text-xs text-slate-400 leading-relaxed">
+                      <input
+                        type="checkbox"
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
+                        className="mt-0.5 h-4 w-4 rounded border-slate-600 text-blue-600 focus:ring-blue-500"
+                      />
+                      <span>
+                        Я ознакомлен с{' '}
+                        <Link href="/privacy" className="text-blue-400 hover:text-blue-300 underline">
+                          Политикой конфиденциальности
+                        </Link>
+                        {' '}и{' '}
+                        <Link href="/terms" className="text-blue-400 hover:text-blue-300 underline">
+                          Пользовательским соглашением
+                        </Link>
+                        , даю согласие на обработку персональных данных
+                      </span>
+                    </label>
+                  </div>
+
                   {error && (
                     <p className="text-red-400 text-sm">{error}</p>
                   )}
@@ -191,9 +216,6 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                   </button>
                 </form>
 
-                <p className="text-xs text-slate-500 text-center mt-4">
-                  Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных
-                </p>
               </>
             )}
           </motion.div>
