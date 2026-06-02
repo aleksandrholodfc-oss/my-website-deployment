@@ -45,7 +45,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <Image src={logo} alt={companyName} width={128} height={128} className="object-contain w-24 h-24" />
+              <Image src={logo} alt={companyName} width={96} height={96} className="object-contain w-24 h-24" sizes="96px" />
               <h3 className="text-xl font-bold">{companyName}</h3>
             </div>
             <p className="text-gray-400 text-sm mb-4 leading-relaxed">{companyDescription}</p>

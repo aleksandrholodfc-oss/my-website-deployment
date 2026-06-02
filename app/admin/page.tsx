@@ -790,7 +790,7 @@ export default function AdminPage() {
               {activeTab === 'gallery' && (
                 <div className="space-y-4">
                   {content.gallery?.map((item: any, index: number) => (
-                    <div key={item.id} className="p-4 border border-gray-200 rounded-lg">
+                    <div key={index} className="p-4 border border-gray-200 rounded-lg">
                       <h3 className="font-bold mb-2">Фото #{index + 1}</h3>
                       <div className="space-y-2">
                         <input
@@ -800,18 +800,18 @@ export default function AdminPage() {
                           placeholder="Заголовок"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
-                        <textarea
-                          value={item.description}
-                          onChange={(e) => updateContent(`gallery.${index}.description`, e.target.value)}
-                          placeholder="Описание"
-                          rows={2}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+                        <input
+                          type="text"
+                          value={item.alt}
+                          onChange={(e) => updateContent(`gallery.${index}.alt`, e.target.value)}
+                          placeholder="Alt-текст (описание для SEO)"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <input
                           type="text"
-                          value={item.image}
-                          onChange={(e) => updateContent(`gallery.${index}.image`, e.target.value)}
-                          placeholder="URL изображения (например, /images/gallery/camera-repair.jpg)"
+                          value={item.src}
+                          onChange={(e) => updateContent(`gallery.${index}.src`, e.target.value)}
+                          placeholder="URL изображения (например, /images/gallery/project-1.jpg)"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <select
