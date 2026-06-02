@@ -12,9 +12,9 @@ export async function validateCsrfToken(token: string): Promise<boolean> {
   try {
     const decoded = Buffer.from(token, 'base64').toString('utf-8');
     const [secret, timestamp] = decoded.split(':');
-    
+
     if (secret !== CSRF_SECRET) return false;
-    
+
     // Token expires after 1 hour
     const tokenAge = Date.now() - parseInt(timestamp);
     return tokenAge < 3600000;

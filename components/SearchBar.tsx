@@ -5,11 +5,7 @@ import { Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
-interface SearchBarProps {
-  onSearch?: (query: string) => void;
-}
-
-export default function SearchBar({ onSearch }: SearchBarProps) {
+export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const router = useRouter();
@@ -51,7 +47,10 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
               <div className="bg-slate-800 rounded-2xl shadow-2xl p-4 border border-slate-700">
                 <form onSubmit={handleSubmit} className="flex gap-3">
                   <div className="flex-1 relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+                    <Search
+                      className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                      size={20}
+                    />
                     <input
                       type="text"
                       value={query}
