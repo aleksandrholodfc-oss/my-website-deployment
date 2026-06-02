@@ -10,6 +10,6 @@ export const UNSPLASH_IMAGES = {
   hero: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80',
 };
 
-export function placeholderImage(width: number, height: number, label: string): string {
+export function placeholderImage(width: number, height: number): string {
   return `https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=${width}&h=${height}&fit=crop&q=80`;
 }

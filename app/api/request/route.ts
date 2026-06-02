@@ -7,20 +7,14 @@ export async function POST(request: NextRequest) {
     const { name, phone, email, description, csrfToken } = body;
 
     if (!csrfToken || !(await validateCsrfToken(csrfToken))) {
-      return NextResponse.json(
-        { error: 'Invalid CSRF token' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
     }
 
     const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
     const CHAT_ID = process.env.TELEGRAM_CHAT_ID || '@federation_cold';
 
     if (!BOT_TOKEN) {
-      return NextResponse.json(
-        { error: 'Telegram bot token not configured' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: 'Telegram bot token not configured' }, { status: 500 });
     }
 
     const telegramMessage = `
@@ -51,9 +45,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, data });
   } catch (error) {
     console.error('Request error:', error);
-    return NextResponse.json(
-      { error: 'Failed to process request' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to process request' }, { status: 500 });
   }
 }

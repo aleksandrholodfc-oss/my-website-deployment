@@ -21,11 +21,11 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
   useEffect(() => {
     if (isOpen) {
       fetch('/api/csrf')
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           setCsrfToken(data.token);
         })
-        .catch(err => {
+        .catch((err) => {
           console.error('Failed to fetch CSRF token:', err);
         });
     }
@@ -34,7 +34,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
   const formatPhoneNumber = (value: string) => {
     const phoneNumber = value.replace(/\D/g, '');
     if (phoneNumber.length === 0) return '';
-    
+
     if (phoneNumber.length <= 1) {
       return `+${phoneNumber}`;
     }
@@ -53,7 +53,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
   const validate = () => {
     const e: { [key: string]: string } = {};
     if (!form.name.trim()) e.name = 'Введите имя';
-    if (!/^[\d\+\s\-\(\)]{10,}$/.test(form.phone)) e.phone = 'Некорректный телефон';
+    if (!/^[0-9+ \-()]{10,}$/.test(form.phone)) e.phone = 'Некорректный телефон';
     if (!consent) e.consent = 'Необходимо согласие';
     setError(Object.keys(e).length > 0 ? 'Пожалуйста, заполните все поля корректно' : '');
     return Object.keys(e).length === 0;
@@ -168,7 +168,9 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                     <input
                       type="tel"
                       value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: formatPhoneNumber(e.target.value) })}
+                      onChange={(e) =>
+                        setForm({ ...form, phone: formatPhoneNumber(e.target.value) })
+                      }
                       className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                       placeholder="+7 (___) ___-__-__"
                     />
@@ -184,10 +186,13 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                       />
                       <span>
                         Я ознакомлен с{' '}
-                        <Link href="/privacy" className="text-blue-400 hover:text-blue-300 underline">
+                        <Link
+                          href="/privacy"
+                          className="text-blue-400 hover:text-blue-300 underline"
+                        >
                           Политикой конфиденциальности
-                        </Link>
-                        {' '}и{' '}
+                        </Link>{' '}
+                        и{' '}
                         <Link href="/terms" className="text-blue-400 hover:text-blue-300 underline">
                           Пользовательским соглашением
                         </Link>
@@ -196,9 +201,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                     </label>
                   </div>
 
-                  {error && (
-                    <p className="text-red-400 text-sm">{error}</p>
-                  )}
+                  {error && <p className="text-red-400 text-sm">{error}</p>}
 
                   <button
                     type="submit"
@@ -215,7 +218,6 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                     )}
                   </button>
                 </form>
-
               </>
             )}
           </motion.div>

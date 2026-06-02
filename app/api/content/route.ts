@@ -9,6 +9,7 @@ export async function GET() {
     const data = await fs.readFile(CONTENT_FILE, 'utf-8');
     return NextResponse.json(JSON.parse(data));
   } catch (error) {
+    console.error('Failed to read content:', error);
     return NextResponse.json({ error: 'Failed to read content' }, { status: 500 });
   }
 }
@@ -19,6 +20,7 @@ export async function PUT(request: Request) {
     await fs.writeFile(CONTENT_FILE, JSON.stringify(content, null, 2), 'utf-8');
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error('Failed to save content:', error);
     return NextResponse.json({ error: 'Failed to save content' }, { status: 500 });
   }
 }

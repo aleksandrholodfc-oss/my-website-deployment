@@ -24,9 +24,9 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
   useEffect(() => {
     if (isOpen) {
       fetch('/api/csrf')
-        .then(res => res.json())
-        .then(data => setCsrfToken(data.token))
-        .catch(err => console.error('Failed to fetch CSRF token:', err));
+        .then((res) => res.json())
+        .then((data) => setCsrfToken(data.token))
+        .catch((err) => console.error('Failed to fetch CSRF token:', err));
     }
   }, [isOpen]);
 
@@ -59,7 +59,8 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
       } else {
         setMessage('Ошибка отправки. Попробуйте позже.');
       }
-    } catch (error) {
+    } catch (err) {
+      console.error('Request error:', err);
       setMessage('Ошибка отправки. Попробуйте позже.');
     }
 
@@ -79,11 +80,15 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
 
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Оставить заявку</h2>
-          <p className="text-gray-600 text-sm">Заполните форму, и мы перезвоним вам в течение 15 минут</p>
+          <p className="text-gray-600 text-sm">
+            Заполните форму, и мы перезвоним вам в течение 15 минут
+          </p>
         </div>
 
         {message && (
-          <div className={`mb-4 p-3 rounded-lg text-sm ${message.includes('отправлена') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+          <div
+            className={`mb-4 p-3 rounded-lg text-sm ${message.includes('отправлена') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
+          >
             {message}
           </div>
         )}
@@ -134,7 +139,9 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Описание проблемы</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Описание проблемы
+            </label>
             <div className="relative">
               <FileText className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
               <textarea
@@ -159,8 +166,8 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
                 Я ознакомлен с{' '}
                 <Link href="/privacy" className="text-blue-600 hover:text-blue-700 underline">
                   Политикой конфиденциальности
-                </Link>
-                {' '}и{' '}
+                </Link>{' '}
+                и{' '}
                 <Link href="/terms" className="text-blue-600 hover:text-blue-700 underline">
                   Пользовательским соглашением
                 </Link>

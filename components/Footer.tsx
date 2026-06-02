@@ -11,9 +11,9 @@ export default function Footer() {
 
   useEffect(() => {
     fetch('/api/content')
-      .then(res => res.json())
-      .then(data => setContent(data))
-      .catch(err => console.error('Failed to load content:', err));
+      .then((res) => res.json())
+      .then((data) => setContent(data))
+      .catch((err) => console.error('Failed to load content:', err));
   }, []);
 
   const quickLinks = [
@@ -34,7 +34,9 @@ export default function Footer() {
   const email = content?.contacts?.email || 'info@федерация-холода.рф';
   const address = 'Иркутск';
   const companyName = content?.company?.name || 'Федерация Холода';
-  const companyDescription = content?.company?.description || 'Профессиональный ремонт и обслуживание холодильного оборудования';
+  const companyDescription =
+    content?.company?.description ||
+    'Профессиональный ремонт и обслуживание холодильного оборудования';
   const logo = content?.company?.logo || LOGO_SRC;
   const inn = content?.contacts?.inn || '';
   const ogrn = content?.contacts?.ogrn || '';
@@ -45,7 +47,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <Image src={logo} alt={companyName} width={128} height={128} className="object-contain w-24 h-24" />
+              <Image
+                src={logo}
+                alt={companyName}
+                width={128}
+                height={128}
+                className="object-contain w-24 h-24"
+              />
               <h3 className="text-xl font-bold">{companyName}</h3>
             </div>
             <p className="text-gray-400 text-sm mb-4 leading-relaxed">{companyDescription}</p>
@@ -56,7 +64,10 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-slate-400 hover:text-white transition-colors text-sm">
+                  <Link
+                    href={link.href}
+                    className="text-slate-400 hover:text-white transition-colors text-sm"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -69,7 +80,10 @@ export default function Footer() {
             <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-slate-400 hover:text-white transition-colors text-sm">
+                  <Link
+                    href={link.href}
+                    className="text-slate-400 hover:text-white transition-colors text-sm"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -82,21 +96,30 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Phone size={20} className="text-primary-400 flex-shrink-0 mt-0.5" />
-                <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a
+                  href={`tel:${phone.replace(/[^+\d]/g, '')}`}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
                   {phone}
                 </a>
               </li>
               {phoneCity && (
                 <li className="flex items-start gap-3">
                   <Phone size={20} className="text-primary-400 flex-shrink-0 mt-0.5" />
-                  <a href={`tel:+7${phoneCity.replace(/[^+\d]/g, '')}`} className="text-gray-400 hover:text-white transition-colors text-sm">
+                  <a
+                    href={`tel:+7${phoneCity.replace(/[^+\d]/g, '')}`}
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
                     {phoneCity}
                   </a>
                 </li>
               )}
               <li className="flex items-start gap-3">
                 <Mail size={20} className="text-primary-400 flex-shrink-0 mt-0.5" />
-                <a href={`mailto:${email}`} className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a
+                  href={`mailto:${email}`}
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
                   {email}
                 </a>
               </li>
@@ -116,7 +139,9 @@ export default function Footer() {
               <p>ОГРН: {ogrn}</p>
             </div>
             <div className="text-xs text-gray-500 text-right">
-              <p>Все права защищены © {new Date().getFullYear()} {companyName}</p>
+              <p>
+                Все права защищены © {new Date().getFullYear()} {companyName}
+              </p>
               <p>Сайт разработан в соответствии с законодательством РФ</p>
             </div>
           </div>
