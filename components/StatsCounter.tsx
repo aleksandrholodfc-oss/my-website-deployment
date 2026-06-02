@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 
 interface StatItem {
   value: string;
@@ -35,7 +35,7 @@ export default function StatsCounter({ stats }: StatsCounterProps) {
       {stats.map((stat, i) => {
         const { number, suffix } = parseValue(stat.value);
         return (
-          <motion.div
+          <m.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -44,14 +44,10 @@ export default function StatsCounter({ stats }: StatsCounterProps) {
             className="bg-slate-800/60 backdrop-blur-md border border-slate-600/50 rounded-xl sm:rounded-2xl p-3 sm:p-5 hover:border-blue-500/60 hover:bg-slate-800/80 transition-all duration-300 shadow-lg text-center"
           >
             <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1">
-              {counted ? (
-                <AnimatedNumber value={number} suffix={suffix} />
-              ) : (
-                stat.value
-              )}
+              {counted ? <AnimatedNumber value={number} suffix={suffix} /> : stat.value}
             </div>
             <div className="text-xs sm:text-sm text-slate-400">{stat.label}</div>
-          </motion.div>
+          </m.div>
         );
       })}
     </div>

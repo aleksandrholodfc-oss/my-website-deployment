@@ -1,11 +1,25 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
-  Phone, CheckCircle, ArrowRight, Clock, Shield, Star, ChevronDown,
-  Wrench, ThumbsUp, ShoppingBag, Package, Warehouse, Droplets,
-  ChefHat, LayoutGrid, Flower2, GlassWater,
+  Phone,
+  CheckCircle,
+  ArrowRight,
+  Clock,
+  Shield,
+  Star,
+  ChevronDown,
+  Wrench,
+  ThumbsUp,
+  ShoppingBag,
+  Package,
+  Warehouse,
+  Droplets,
+  ChefHat,
+  LayoutGrid,
+  Flower2,
+  GlassWater,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -166,7 +180,7 @@ export default function TradePageClient({ contacts }: Props) {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
@@ -178,14 +192,18 @@ export default function TradePageClient({ contacts }: Props) {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-              Ремонт торгового<br />
+              Ремонт торгового
+              <br />
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                холодильного<br />оборудования
+                холодильного
+                <br />
+                оборудования
               </span>
             </h1>
 
             <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-xl">
-              Витрины, лари, камеры, льдогенераторы и пивоохладители. Диагностика на месте — выезд за 2–4 часа по Иркутску и области.
+              Витрины, лари, камеры, льдогенераторы и пивоохладители. Диагностика на месте — выезд
+              за 2–4 часа по Иркутску и области.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -198,24 +216,28 @@ export default function TradePageClient({ contacts }: Props) {
                 </Button>
               </a>
               <Link href="/contacts">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-slate-500 text-white hover:bg-slate-800">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto border-slate-500 text-white hover:bg-slate-800"
+                >
                   Оставить заявку <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mt-12 flex flex-wrap gap-3"
           >
             {[
-              { icon: Clock,    label: 'Выезд за 2–4 часа' },
-              { icon: Shield,   label: 'Гарантия до 12 мес.' },
+              { icon: Clock, label: 'Выезд за 2–4 часа' },
+              { icon: Shield, label: 'Гарантия до 12 мес.' },
               { icon: ThumbsUp, label: 'Диагностика бесплатно' },
-              { icon: Star,     label: 'Рейтинг 5.0 на Яндекс' },
+              { icon: Star, label: 'Рейтинг 5.0 на Яндекс' },
             ].map(({ icon: Ic, label }, i) => (
               <div
                 key={i}
@@ -225,7 +247,7 @@ export default function TradePageClient({ contacts }: Props) {
                 <span className="text-slate-200 text-sm font-medium">{label}</span>
               </div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -237,7 +259,7 @@ export default function TradePageClient({ contacts }: Props) {
           </p>
           <div className="flex flex-wrap gap-2 justify-center">
             {SYMPTOMS.map((s, i) => (
-              <motion.span
+              <m.span
                 key={i}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -246,7 +268,7 @@ export default function TradePageClient({ contacts }: Props) {
                 className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-700/50 border border-slate-600 rounded-full text-sm text-slate-300 hover:border-blue-500/50 hover:text-white transition-colors"
               >
                 <CheckCircle className="w-3.5 h-3.5 text-green-400 flex-shrink-0" /> {s}
-              </motion.span>
+              </m.span>
             ))}
           </div>
         </div>
@@ -255,7 +277,7 @@ export default function TradePageClient({ contacts }: Props) {
       {/* ── SERVICE TYPES GRID ─────────────────────────────────────────────── */}
       <section className="bg-slate-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -268,14 +290,14 @@ export default function TradePageClient({ contacts }: Props) {
             <p className="text-slate-400 max-w-2xl mx-auto">
               Работаем с оборудованием всех производителей. Используем только оригинальные запчасти.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {SERVICE_TYPES.map((svc, i) => {
               const Icon = svc.icon;
               const open = openService === i;
               return (
-                <motion.div
+                <m.div
                   key={i}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -296,15 +318,15 @@ export default function TradePageClient({ contacts }: Props) {
                     <p className="text-slate-400 text-sm leading-relaxed">{svc.desc}</p>
                     <div className="flex items-center gap-1 mt-3 text-blue-400 text-xs font-semibold">
                       {open ? 'Свернуть' : 'Виды работ'}
-                      <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                      <m.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
                         <ChevronDown className="w-4 h-4" />
-                      </motion.div>
+                      </m.div>
                     </div>
                   </div>
 
                   <AnimatePresence>
                     {open && (
-                      <motion.div
+                      <m.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -314,17 +336,20 @@ export default function TradePageClient({ contacts }: Props) {
                         <div className="px-5 pb-5 border-t border-slate-700/50 pt-4">
                           <ul className="space-y-1.5">
                             {svc.works.map((w, wi) => (
-                              <li key={wi} className="flex items-start gap-2 text-slate-300 text-sm">
+                              <li
+                                key={wi}
+                                className="flex items-start gap-2 text-slate-300 text-sm"
+                              >
                                 <CheckCircle className="w-3.5 h-3.5 text-green-400 flex-shrink-0 mt-0.5" />
                                 {w}
                               </li>
                             ))}
                           </ul>
                         </div>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
@@ -335,7 +360,7 @@ export default function TradePageClient({ contacts }: Props) {
       <section className="bg-slate-800/30 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -347,17 +372,19 @@ export default function TradePageClient({ contacts }: Props) {
                 Каждый час простоя — прямые убытки
               </h2>
               <p className="text-slate-400 leading-relaxed mb-8">
-                Торговое холодильное оборудование работает 24/7. Неисправность витрины или холодильного шкафа — это порча товара, штрафы и потеря выручки. Мы выезжаем за 2–4 часа и устраняем большинство поломок прямо на месте без вывоза техники.
+                Торговое холодильное оборудование работает 24/7. Неисправность витрины или
+                холодильного шкафа — это порча товара, штрафы и потеря выручки. Мы выезжаем за 2–4
+                часа и устраняем большинство поломок прямо на месте без вывоза техники.
               </p>
               <div className="space-y-3">
                 {[
-                  { icon: Clock,    text: 'Выезд в течение 2–4 часов — без ожидания' },
-                  { icon: Wrench,   text: 'Ремонт прямо на месте, без эвакуации техники' },
-                  { icon: Shield,   text: 'Письменная гарантия до 12 месяцев' },
+                  { icon: Clock, text: 'Выезд в течение 2–4 часов — без ожидания' },
+                  { icon: Wrench, text: 'Ремонт прямо на месте, без эвакуации техники' },
+                  { icon: Shield, text: 'Письменная гарантия до 12 месяцев' },
                   { icon: ThumbsUp, text: 'Только оригинальные запчасти со склада' },
-                  { icon: Star,     text: 'Скидка 5% при оформлении заявки через сайт' },
+                  { icon: Star, text: 'Скидка 5% при оформлении заявки через сайт' },
                 ].map(({ icon: Ic, text }, i) => (
-                  <motion.div
+                  <m.div
                     key={i}
                     initial={{ opacity: 0, x: -16 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -369,12 +396,12 @@ export default function TradePageClient({ contacts }: Props) {
                       <Ic className="w-4 h-4 text-blue-400" />
                     </div>
                     <span className="text-slate-300 text-sm">{text}</span>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.97 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -390,10 +417,12 @@ export default function TradePageClient({ contacts }: Props) {
               <div className="absolute bottom-4 left-4 right-4">
                 <div className="flex items-center gap-3 bg-slate-900/85 backdrop-blur rounded-xl px-4 py-3 border border-slate-700">
                   <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse flex-shrink-0" />
-                  <span className="text-white text-sm font-medium">Мастер готов выехать прямо сейчас</span>
+                  <span className="text-white text-sm font-medium">
+                    Мастер готов выехать прямо сейчас
+                  </span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -401,7 +430,7 @@ export default function TradePageClient({ contacts }: Props) {
       {/* ── HOW WE WORK ────────────────────────────────────────────────────── */}
       <section className="bg-slate-900 py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -411,17 +440,33 @@ export default function TradePageClient({ contacts }: Props) {
               Схема работы
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white">Как мы работаем</h2>
-          </motion.div>
+          </m.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 items-start">
             {[
-              { n: '01', title: 'Звонок', desc: 'Опишите проблему — дадим предварительный прогноз по телефону' },
+              {
+                n: '01',
+                title: 'Звонок',
+                desc: 'Опишите проблему — дадим предварительный прогноз по телефону',
+              },
               { n: '02', title: 'Выезд', desc: 'Мастер приезжает за 2–4 часа со всем необходимым' },
-              { n: '03', title: 'Диагностика', desc: 'Бесплатная диагностика на месте, определение неисправности' },
-              { n: '04', title: 'Ремонт', desc: 'Устраняем неисправность с согласованием цены заранее' },
-              { n: '05', title: 'Гарантия', desc: 'Выдаём письменную гарантию до 12 месяцев на работы' },
+              {
+                n: '03',
+                title: 'Диагностика',
+                desc: 'Бесплатная диагностика на месте, определение неисправности',
+              },
+              {
+                n: '04',
+                title: 'Ремонт',
+                desc: 'Устраняем неисправность с согласованием цены заранее',
+              },
+              {
+                n: '05',
+                title: 'Гарантия',
+                desc: 'Выдаём письменную гарантию до 12 месяцев на работы',
+              },
             ].map((step, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -434,7 +479,7 @@ export default function TradePageClient({ contacts }: Props) {
                 </div>
                 <h3 className="text-white font-bold text-base mb-2">{step.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -443,7 +488,7 @@ export default function TradePageClient({ contacts }: Props) {
       {/* ── PRICE TABLE ────────────────────────────────────────────────────── */}
       <section className="bg-slate-800/30 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -456,15 +501,19 @@ export default function TradePageClient({ contacts }: Props) {
             <p className="text-slate-400">
               Ориентировочные цены. Точная стоимость — после бесплатной диагностики на месте.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden">
             <div className="grid grid-cols-2 px-5 py-3 bg-slate-700/30 border-b border-slate-700">
-              <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Вид работ</span>
-              <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider text-right">Стоимость</span>
+              <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">
+                Вид работ
+              </span>
+              <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider text-right">
+                Стоимость
+              </span>
             </div>
             {visiblePrices.map((item, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -474,7 +523,7 @@ export default function TradePageClient({ contacts }: Props) {
               >
                 <span className="text-slate-300 text-sm pr-4">{item.name}</span>
                 <span className="text-blue-300 font-semibold text-sm text-right">{item.price}</span>
-              </motion.div>
+              </m.div>
             ))}
           </div>
 
@@ -485,7 +534,9 @@ export default function TradePageClient({ contacts }: Props) {
                 className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
               >
                 {showAllPrices ? 'Свернуть' : `Показать все ${PRICES.length} позиций`}
-                <ChevronDown className={`w-4 h-4 transition-transform ${showAllPrices ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${showAllPrices ? 'rotate-180' : ''}`}
+                />
               </button>
             </div>
           )}
@@ -501,10 +552,22 @@ export default function TradePageClient({ contacts }: Props) {
           <p className="text-slate-400 text-sm text-center mb-6 font-medium">Другие направления</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { href: '/services/industrial',  label: 'Промышленное',    sub: 'Чиллеры, камеры, централи' },
-              { href: '/services/climate',     label: 'Климатическое',  sub: 'Кондиционеры, вентиляция' },
-              { href: '/services/auto',        label: 'Автокондиционеры', sub: 'Заправка и ремонт' },
-              { href: '/services/refrigerator',label: 'Рефрижераторы',  sub: 'Thermo King, Carrier' },
+              {
+                href: '/services/industrial',
+                label: 'Промышленное',
+                sub: 'Чиллеры, камеры, централи',
+              },
+              {
+                href: '/services/climate',
+                label: 'Климатическое',
+                sub: 'Кондиционеры, вентиляция',
+              },
+              { href: '/services/auto', label: 'Автокондиционеры', sub: 'Заправка и ремонт' },
+              {
+                href: '/services/refrigerator',
+                label: 'Рефрижераторы',
+                sub: 'Thermo King, Carrier',
+              },
             ].map(({ href, label, sub }) => (
               <Link
                 key={href}
@@ -512,7 +575,9 @@ export default function TradePageClient({ contacts }: Props) {
                 className="flex items-center justify-between gap-3 bg-slate-800/50 border border-slate-700 rounded-xl px-4 py-3.5 hover:border-blue-500/50 hover:bg-slate-800 transition-all group"
               >
                 <div>
-                  <div className="text-white font-semibold text-sm group-hover:text-blue-300 transition-colors">{label}</div>
+                  <div className="text-white font-semibold text-sm group-hover:text-blue-300 transition-colors">
+                    {label}
+                  </div>
                   <div className="text-slate-500 text-xs mt-0.5">{sub}</div>
                 </div>
                 <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-blue-400 transition-colors flex-shrink-0" />
@@ -525,7 +590,7 @@ export default function TradePageClient({ contacts }: Props) {
       {/* ── CTA BANNER ─────────────────────────────────────────────────────── */}
       <section className="bg-slate-900 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -539,30 +604,40 @@ export default function TradePageClient({ contacts }: Props) {
                   Нужен ремонт торгового оборудования?
                 </h3>
                 <p className="text-blue-100 text-base max-w-lg">
-                  Позвоните прямо сейчас — мастер выедет за 2–4 часа. Диагностика бесплатна при ремонте.
+                  Позвоните прямо сейчас — мастер выедет за 2–4 часа. Диагностика бесплатна при
+                  ремонте.
                 </p>
                 <div className="flex flex-wrap gap-3 mt-4 justify-center lg:justify-start">
-                  {['Диагностика бесплатно', 'Без скрытых платежей', 'Гарантия 12 мес.'].map((item) => (
-                    <span key={item} className="flex items-center gap-1.5 text-blue-100 text-sm">
-                      <CheckCircle className="w-4 h-4 text-green-300 flex-shrink-0" /> {item}
-                    </span>
-                  ))}
+                  {['Диагностика бесплатно', 'Без скрытых платежей', 'Гарантия 12 мес.'].map(
+                    (item) => (
+                      <span key={item} className="flex items-center gap-1.5 text-blue-100 text-sm">
+                        <CheckCircle className="w-4 h-4 text-green-300 flex-shrink-0" /> {item}
+                      </span>
+                    )
+                  )}
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
                 <a href={`tel:${phone}`}>
-                  <Button size="lg" className="w-full sm:w-auto bg-white text-blue-700 hover:bg-blue-50 font-bold shadow-xl">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto bg-white text-blue-700 hover:bg-blue-50 font-bold shadow-xl"
+                  >
                     <Phone className="w-5 h-5 mr-2" /> {phone}
                   </Button>
                 </a>
                 <Link href="/contacts">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-white/60 text-white hover:bg-white/10">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto border-white/60 text-white hover:bg-white/10"
+                  >
                     Оставить заявку
                   </Button>
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { X, Phone, Send, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
@@ -21,11 +21,11 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
   useEffect(() => {
     if (isOpen) {
       fetch('/api/csrf')
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           setCsrfToken(data.token);
         })
-        .catch(err => {
+        .catch((err) => {
           console.error('Failed to fetch CSRF token:', err);
         });
     }
@@ -34,7 +34,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
   const formatPhoneNumber = (value: string) => {
     const phoneNumber = value.replace(/\D/g, '');
     if (phoneNumber.length === 0) return '';
-    
+
     if (phoneNumber.length <= 1) {
       return `+${phoneNumber}`;
     }
@@ -104,14 +104,14 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
           />
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -126,7 +126,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
             </button>
 
             {submitted ? (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-8"
@@ -136,7 +136,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">Заявка отправлена!</h3>
                 <p className="text-slate-400">Мастер перезвонит вам в течение 15 минут.</p>
-              </motion.div>
+              </m.div>
             ) : (
               <>
                 <div className="text-center mb-6">
@@ -168,7 +168,9 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                     <input
                       type="tel"
                       value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: formatPhoneNumber(e.target.value) })}
+                      onChange={(e) =>
+                        setForm({ ...form, phone: formatPhoneNumber(e.target.value) })
+                      }
                       className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                       placeholder="+7 (___) ___-__-__"
                     />
@@ -184,10 +186,13 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                       />
                       <span>
                         Я ознакомлен с{' '}
-                        <Link href="/privacy" className="text-blue-400 hover:text-blue-300 underline">
+                        <Link
+                          href="/privacy"
+                          className="text-blue-400 hover:text-blue-300 underline"
+                        >
                           Политикой конфиденциальности
-                        </Link>
-                        {' '}и{' '}
+                        </Link>{' '}
+                        и{' '}
                         <Link href="/terms" className="text-blue-400 hover:text-blue-300 underline">
                           Пользовательским соглашением
                         </Link>
@@ -196,9 +201,7 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                     </label>
                   </div>
 
-                  {error && (
-                    <p className="text-red-400 text-sm">{error}</p>
-                  )}
+                  {error && <p className="text-red-400 text-sm">{error}</p>}
 
                   <button
                     type="submit"
@@ -215,10 +218,9 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                     )}
                   </button>
                 </form>
-
               </>
             )}
-          </motion.div>
+          </m.div>
         </div>
       )}
     </AnimatePresence>

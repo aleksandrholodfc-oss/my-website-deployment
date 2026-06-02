@@ -253,16 +253,7 @@
       "category": "Торговое холодильное оборудование",
       "description": "Полный спектр услуг по ремонту и обслуживанию торгового холодильного оборудования для магазинов, супермаркетов, ресторанов и кафе. Работаем с оборудованием всех производителей.",
       "image": "/images/torgovoe.jpg",
-      "brands": [
-        "Bihler",
-        "Abat",
-        "Polair",
-        "Hiber",
-        "Kundo",
-        "Snaige",
-        "Coldex",
-        "Tefcold"
-      ],
+      "brands": ["Bihler", "Abat", "Polair", "Hiber", "Kundo", "Snaige", "Coldex", "Tefcold"],
       "process": "Диагностика → Согласование цены → Ремонт → Тестирование → Гарантия",
       "timeEstimate": "1-3 часа в день обращения",
       "items": [
@@ -281,15 +272,7 @@
       "category": "Промышленное холодильное оборудование",
       "description": "Сложный ремонт и обслуживание промышленных систем охлаждения, холодильных установок и холодильных камер на предприятиях пищевой промышленности, складах и логистических центрах.",
       "image": "/images/prom.jpg",
-      "brands": [
-        "Carrier",
-        "Trane",
-        "York",
-        "Daikin",
-        "Mitsubishi",
-        "Bitzer",
-        "Copeland"
-      ],
+      "brands": ["Carrier", "Trane", "York", "Daikin", "Mitsubishi", "Bitzer", "Copeland"],
       "process": "Предварительный осмотр → Полная диагностика → Проект ремонта → Выполнение работ → Пусконаладка",
       "timeEstimate": "1-3 дня в зависимости от сложности",
       "items": [
@@ -305,15 +288,7 @@
       "category": "Климатическое оборудование",
       "description": "Установка, ремонт и обслуживание систем кондиционирования и вентиляции для офисов, жилых и коммерческих помещений. Работаем с системами любой сложности.",
       "image": "/images/klimatika.jpg",
-      "brands": [
-        "Mitsubishi Electric",
-        "Daikin",
-        "Bicool",
-        "Toshiba",
-        "LG",
-        "Samsung",
-        "Ballu"
-      ],
+      "brands": ["Mitsubishi Electric", "Daikin", "Bicool", "Toshiba", "LG", "Samsung", "Ballu"],
       "process": "Осмотр объекта → Подбор оборудования → Монтаж/Ремонт → Настройка → Обучение пользователя",
       "timeEstimate": "Монтаж 1-3 дня, ремонт 1-4 часа",
       "items": [
@@ -330,14 +305,7 @@
       "category": "Автокондиционеры",
       "description": "Профессиональная диагностика и ремонт автокондиционеров всех типов транспортных средств: легковых автомобилей, кроссоверов, джипов, спецтехники и автобусов.",
       "image": "/images/auto.jpg",
-      "brands": [
-        "Denso",
-        "Valeo",
-        "Sanden",
-        "Delphi",
-        "Behr",
-        "Calsonic"
-      ],
+      "brands": ["Denso", "Valeo", "Sanden", "Delphi", "Behr", "Calsonic"],
       "process": "Диагностика → Поиск утечки → Ремонт/Замена → Заправка фреоном → Проверка",
       "timeEstimate": "30 минут - 2 часа",
       "items": [
@@ -353,13 +321,7 @@
       "category": "Рефрижераторы",
       "description": "Полный цикл ремонта и обслуживания рефрижераторных установок и холодильных систем грузового транспорта, включая полуприцепы, грузовики и фургоны.",
       "image": "/images/ref.png",
-      "brands": [
-        "Thermo King",
-        "Carrier Transicold",
-        "Daikin",
-        "Mitsubishi",
-        "Zanotti"
-      ],
+      "brands": ["Thermo King", "Carrier Transicold", "Daikin", "Mitsubishi", "Zanotti"],
       "process": "Диагностика → Ремонт механической части → Ремонт электрики → Заправка → Тестирование",
       "timeEstimate": "2-6 часов",
       "items": [
