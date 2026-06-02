@@ -11,7 +11,7 @@ interface CallbackModalProps {
 }
 
 export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
-  const [form, setForm] = useState({ name: '', phone: '' });
+  const [form, setForm] = useState({ name: '', phone: '', website: '' });
   const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -71,20 +71,16 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken,
         },
-        body: JSON.stringify({
-          name: form.name,
-          phone: form.phone,
-          type: 'callback',
-          csrfToken,
-        }),
+        body: JSON.stringify(form),
       });
 
       const data = await response.json();
 
       if (data.success) {
         setSubmitted(true);
-        setForm({ name: '', phone: '' });
+        setForm({ name: '', phone: '', website: '' });
         setTimeout(() => {
           setSubmitted(false);
           onClose();
@@ -171,6 +167,17 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                       onChange={(e) => setForm({ ...form, phone: formatPhoneNumber(e.target.value) })}
                       className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                       placeholder="+7 (___) ___-__-__"
+                    />
+                  </div>
+
+                  <div className="hidden" aria-hidden="true">
+                    <input
+                      type="text"
+                      name="website"
+                      value={form.website}
+                      onChange={(e) => setForm({ ...form, website: e.target.value })}
+                      tabIndex={-1}
+                      autoComplete="off"
                     />
                   </div>
 
