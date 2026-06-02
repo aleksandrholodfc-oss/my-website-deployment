@@ -3,8 +3,19 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp, Phone, MessageSquare, CheckCircle, Wrench, Clock, Shield, Award, ArrowRight } from 'lucide-react';
+import { m, AnimatePresence } from 'framer-motion';
+import {
+  ChevronDown,
+  ChevronUp,
+  Phone,
+  MessageSquare,
+  CheckCircle,
+  Wrench,
+  Clock,
+  Shield,
+  Award,
+  ArrowRight,
+} from 'lucide-react';
 
 export interface ServiceItem {
   name: string;
@@ -65,7 +76,11 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/60 to-slate-900" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 pt-24 w-full">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
             <span className="inline-flex items-center gap-2 text-xs font-semibold text-cyan-400 uppercase tracking-widest mb-4">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               {cfg.subtitle}
@@ -88,17 +103,22 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
                 </button>
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* ── SYMPTOMS ─────────────────────────────────────────────────────────── */}
       <section className="bg-slate-800/60 border-y border-slate-700/50 py-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs text-slate-500 uppercase tracking-widest font-medium mb-3">Решаем проблемы</p>
+          <p className="text-xs text-slate-500 uppercase tracking-widest font-medium mb-3">
+            Решаем проблемы
+          </p>
           <div className="flex flex-wrap gap-2">
             {cfg.symptoms.map((s, i) => (
-              <span key={i} className="px-3 py-1.5 bg-slate-700/60 border border-slate-600 rounded-full text-slate-300 text-xs font-medium">
+              <span
+                key={i}
+                className="px-3 py-1.5 bg-slate-700/60 border border-slate-600 rounded-full text-slate-300 text-xs font-medium"
+              >
                 {s}
               </span>
             ))}
@@ -110,14 +130,16 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
       <section className="bg-slate-900 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-2">Виды услуг</p>
+            <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-2">
+              Виды услуг
+            </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Что мы ремонтируем</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-3">
             {cfg.services.map((svc, i) => {
               const open = openIdx === i;
               return (
-                <motion.div
+                <m.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -132,12 +154,18 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center flex-shrink-0">
                       <Wrench className="w-5 h-5 text-white" />
                     </div>
-                    <span className="flex-1 text-white font-semibold text-sm sm:text-base">{svc.name}</span>
-                    {open ? <ChevronUp className="w-4 h-4 text-blue-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
+                    <span className="flex-1 text-white font-semibold text-sm sm:text-base">
+                      {svc.name}
+                    </span>
+                    {open ? (
+                      <ChevronUp className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                    ) : (
+                      <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                    )}
                   </button>
                   <AnimatePresence>
                     {open && (
-                      <motion.div
+                      <m.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -148,16 +176,19 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
                           <p className="text-slate-400 text-sm mb-3 leading-relaxed">{svc.desc}</p>
                           <div className="flex flex-wrap gap-x-4 gap-y-1">
                             {svc.works.map((w, j) => (
-                              <span key={j} className="flex items-center gap-1.5 text-slate-300 text-xs">
+                              <span
+                                key={j}
+                                className="flex items-center gap-1.5 text-slate-300 text-xs"
+                              >
                                 <CheckCircle className="w-3 h-3 text-cyan-400 flex-shrink-0" /> {w}
                               </span>
                             ))}
                           </div>
                         </div>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
@@ -169,17 +200,41 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-2">Почему выбирают нас</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">Гарантия результата</h2>
+              <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-2">
+                Почему выбирают нас
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">
+                Гарантия результата
+              </h2>
               <div className="space-y-4">
                 {[
-                  { icon: Clock,   title: 'Выезд в день обращения', desc: 'Мастер прибудет в удобное для вас время' },
-                  { icon: Award,   title: 'Гарантия на работы', desc: 'До 12 месяцев на выполненный ремонт' },
-                  { icon: Shield,  title: 'Оригинальные запчасти', desc: 'Только проверенные комплектующие' },
-                  { icon: Wrench,  title: 'Фиксированная стоимость', desc: 'Цена согласуется до начала ремонта' },
-                  { icon: Phone,   title: 'Консультация бесплатно', desc: 'Помогаем определить причину поломки' },
+                  {
+                    icon: Clock,
+                    title: 'Выезд в день обращения',
+                    desc: 'Мастер прибудет в удобное для вас время',
+                  },
+                  {
+                    icon: Award,
+                    title: 'Гарантия на работы',
+                    desc: 'До 12 месяцев на выполненный ремонт',
+                  },
+                  {
+                    icon: Shield,
+                    title: 'Оригинальные запчасти',
+                    desc: 'Только проверенные комплектующие',
+                  },
+                  {
+                    icon: Wrench,
+                    title: 'Фиксированная стоимость',
+                    desc: 'Цена согласуется до начала ремонта',
+                  },
+                  {
+                    icon: Phone,
+                    title: 'Консультация бесплатно',
+                    desc: 'Помогаем определить причину поломки',
+                  },
                 ].map(({ icon: Icon, title, desc }, i) => (
-                  <motion.div
+                  <m.div
                     key={i}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -194,7 +249,7 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
                       <p className="text-white font-semibold text-sm">{title}</p>
                       <p className="text-slate-400 text-xs mt-0.5">{desc}</p>
                     </div>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </div>
@@ -205,7 +260,9 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
                 fill
                 className="object-cover"
                 sizes="(max-width:1024px) 100vw, 50vw"
-                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
             </div>
@@ -217,12 +274,14 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
       <section className="bg-slate-900 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-2">Процесс</p>
+            <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-2">
+              Процесс
+            </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Как мы работаем</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {cfg.steps.map(({ step, title, desc }, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -236,7 +295,7 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
                 {i < cfg.steps.length - 1 && (
                   <ArrowRight className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-600/40 hidden lg:block" />
                 )}
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -246,14 +305,21 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
       <section className="bg-slate-800/30 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-2">Стоимость</p>
+            <p className="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-2">
+              Стоимость
+            </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Прайс-лист</h2>
           </div>
           <div className="bg-slate-800/60 border border-slate-700 rounded-2xl overflow-hidden">
             {visiblePrices.map((item, i) => (
-              <div key={i} className={`flex items-center justify-between px-5 py-3.5 gap-4 ${i % 2 === 0 ? 'bg-transparent' : 'bg-slate-800/40'}`}>
+              <div
+                key={i}
+                className={`flex items-center justify-between px-5 py-3.5 gap-4 ${i % 2 === 0 ? 'bg-transparent' : 'bg-slate-800/40'}`}
+              >
                 <span className="text-slate-300 text-sm">{item.name}</span>
-                <span className="text-blue-400 font-bold text-sm whitespace-nowrap">{item.price}</span>
+                <span className="text-blue-400 font-bold text-sm whitespace-nowrap">
+                  {item.price}
+                </span>
               </div>
             ))}
             {cfg.prices.length > PRICE_PREVIEW && (
@@ -263,7 +329,9 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
                   className="flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
                 >
                   {showAll ? 'Скрыть' : `Показать все ${cfg.prices.length} позиции`}
-                  <ChevronDown className={`w-4 h-4 transition-transform ${showAll ? 'rotate-180' : ''}`} />
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${showAll ? 'rotate-180' : ''}`}
+                  />
                 </button>
               </div>
             )}
@@ -277,7 +345,7 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
       {/* ── CTA ──────────────────────────────────────────────────────────────── */}
       <section className="bg-slate-900 py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -297,7 +365,7 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
                 </button>
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -310,7 +378,9 @@ export default function ServicePageTemplate({ cfg }: { cfg: ServicePageConfig })
               <Link key={i} href={href}>
                 <div className="flex items-center gap-3 bg-slate-800/60 border border-slate-700 hover:border-blue-500/50 rounded-xl p-4 transition-all group">
                   <div className="flex-1 min-w-0">
-                    <p className="text-white font-semibold text-sm group-hover:text-blue-300 transition-colors">{label}</p>
+                    <p className="text-white font-semibold text-sm group-hover:text-blue-300 transition-colors">
+                      {label}
+                    </p>
                     <p className="text-slate-500 text-xs mt-0.5 truncate">{sub}</p>
                   </div>
                   <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-blue-400 transition-colors flex-shrink-0" />

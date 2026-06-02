@@ -6,13 +6,17 @@ import ScrollToTop from '@/components/ScrollToTop';
 import FloatingButtons from '@/components/FloatingButtons';
 import CookieConsent from '@/components/CookieConsent';
 import Script from 'next/script';
+import { MotionProvider } from '@/components/MotionProvider';
+import contentData from '@/data/content.json';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://федерация-холода.рф'),
   applicationName: 'Федерация Холода',
   title: 'Федерация Холода — Ремонт холодильного оборудования в Иркутске',
-  description: 'Профессиональный ремонт и обслуживание холодильного оборудования в Иркутске. Торговое, промышленное холодильное оборудование, рефрижераторы, автокондиционеры. Выезд 24/7, гарантия до 1 года.',
-  keywords: 'ремонт холодильного оборудования, ремонт холодильников, ремонт рефрижераторов, ремонт торгового оборудования, ремонт промышленного оборудования, ремонт автокондиционеров, ремонт климатического оборудования, Иркутск, Федерация Холода',
+  description:
+    'Профессиональный ремонт и обслуживание холодильного оборудования в Иркутске. Торговое, промышленное холодильное оборудование, рефрижераторы, автокондиционеры. Выезд 24/7, гарантия до 1 года.',
+  keywords:
+    'ремонт холодильного оборудования, ремонт холодильников, ремонт рефрижераторов, ремонт торгового оборудования, ремонт промышленного оборудования, ремонт автокондиционеров, ремонт климатического оборудования, Иркутск, Федерация Холода',
   authors: [{ name: 'Федерация Холода' }],
   creator: 'Федерация Холода',
   publisher: 'Федерация Холода',
@@ -28,7 +32,8 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     url: 'https://федерация-холода.рф',
     title: 'Федерация Холода — Ремонт холодильного оборудования в Иркутске',
-    description: 'Профессиональный ремонт и обслуживание холодильного оборудования. Выезд 24/7, гарантия до 1 года.',
+    description:
+      'Профессиональный ремонт и обслуживание холодильного оборудования. Выезд 24/7, гарантия до 1 года.',
     siteName: 'Федерация Холода',
     images: [
       {
@@ -43,7 +48,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: 'Федерация Холода',
     title: 'Федерация Холода — Ремонт холодильного оборудования',
-    description: 'Профессиональный ремонт и обслуживание холодильного оборудования. Выезд 24/7, гарантия до 1 года.',
+    description:
+      'Профессиональный ремонт и обслуживание холодильного оборудования. Выезд 24/7, гарантия до 1 года.',
     images: ['/images/og-cover.svg'],
   },
   alternates: {
@@ -138,7 +144,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script
           id="schema-org"
           type="application/ld+json"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
         />
         {yandexId ? (
@@ -157,14 +163,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
         ) : null}
-        <div className="min-h-screen flex flex-col bg-slate-900 text-slate-100">
-          <Header />
-          <main className="flex-1 pt-16">{children}</main>
-          <Footer />
-          <ScrollToTop />
-          <FloatingButtons />
-          <CookieConsent />
-        </div>
+        <MotionProvider>
+          <div className="min-h-screen flex flex-col bg-slate-900 text-slate-100">
+            <Header content={contentData} />
+            <main className="flex-1 pt-16">{children}</main>
+            <Footer content={contentData} />
+            <ScrollToTop />
+            <FloatingButtons />
+            <CookieConsent />
+          </div>
+        </MotionProvider>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 interface SectionHeaderProps {
   title: string;
@@ -11,9 +11,15 @@ interface SectionHeaderProps {
   titleColor?: string;
 }
 
-export default function SectionHeader({ title, subtitle, description, centered = false, titleColor }: SectionHeaderProps) {
+export default function SectionHeader({
+  title,
+  subtitle,
+  description,
+  centered = false,
+  titleColor,
+}: SectionHeaderProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -25,7 +31,9 @@ export default function SectionHeader({ title, subtitle, description, centered =
           {subtitle}
         </span>
       )}
-      <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight ${titleColor || 'text-dark-900'}`}>
+      <h2
+        className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight ${titleColor || 'text-dark-900'}`}
+      >
         {title}
       </h2>
       {description && (
@@ -33,6 +41,6 @@ export default function SectionHeader({ title, subtitle, description, centered =
           {description}
         </p>
       )}
-    </motion.div>
+    </m.div>
   );
 }

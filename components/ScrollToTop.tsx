@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,7 +30,7 @@ export default function ScrollToTop() {
   return (
     <>
       {isVisible && (
-        <motion.button
+        <m.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
@@ -39,7 +39,7 @@ export default function ScrollToTop() {
           aria-label="Наверх"
         >
           <ArrowUp size={24} />
-        </motion.button>
+        </m.button>
       )}
     </>
   );

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Search, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
 interface SearchBarProps {
@@ -35,14 +35,14 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-50 flex items-start justify-center pt-20">
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
               onClick={() => setIsOpen(false)}
             />
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -51,7 +51,10 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
               <div className="bg-slate-800 rounded-2xl shadow-2xl p-4 border border-slate-700">
                 <form onSubmit={handleSubmit} className="flex gap-3">
                   <div className="flex-1 relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+                    <Search
+                      className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                      size={20}
+                    />
                     <input
                       type="text"
                       value={query}
@@ -76,7 +79,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
                   </button>
                 </form>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         )}
       </AnimatePresence>

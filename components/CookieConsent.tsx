@@ -38,17 +38,25 @@ export default function CookieConsent() {
             <div>
               <p className="mb-1 font-semibold text-white">Мы используем файлы cookie</p>
               <p className="leading-relaxed">
-                Сайт использует технические и аналитические cookie для корректной работы, улучшения сервиса и анализа посещаемости. Продолжая пользоваться сайтом или нажимая «Принять», вы соглашаетесь с условиями{' '}
-                <Link href="/privacy" className="font-medium text-blue-300 underline-offset-4 hover:text-blue-200 hover:underline">
+                Сайт использует технические и аналитические cookie для корректной работы, улучшения
+                сервиса и анализа посещаемости. Продолжая пользоваться сайтом или нажимая «Принять»,
+                вы соглашаетесь с условиями{' '}
+                <Link
+                  href="/privacy"
+                  className="font-medium text-blue-300 underline-offset-4 hover:text-blue-200 hover:underline"
+                >
                   Политики конфиденциальности
-                </Link>
-                {' '}и{' '}
-                <Link href="/terms" className="font-medium text-blue-300 underline-offset-4 hover:text-blue-200 hover:underline">
+                </Link>{' '}
+                и{' '}
+                <Link
+                  href="/terms"
+                  className="font-medium text-blue-300 underline-offset-4 hover:text-blue-200 hover:underline"
+                >
                   Пользовательского соглашения
                 </Link>
                 .
               </p>
-          </div>
+            </div>
           </div>
           <div className="flex w-full items-center gap-2 sm:w-auto sm:flex-shrink-0">
             <button

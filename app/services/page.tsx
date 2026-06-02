@@ -6,17 +6,22 @@ import ServicesPageClient from '@/components/services/ServicesPageClient';
 
 export const metadata: Metadata = {
   title: 'Услуги по ремонту холодильного оборудования в Иркутске | Федерация Холода',
-  description: 'Ремонт торгового, промышленного и климатического холодильного оборудования, автокондиционеров и рефрижераторов в Иркутске. Выезд 24/7, диагностика, гарантия до 1 года.',
-  keywords: 'ремонт холодильного оборудования Иркутск, ремонт торгового холодильного оборудования, ремонт промышленного холодильного оборудования, ремонт рефрижераторов, ремонт автокондиционеров, ремонт кондиционеров Иркутск, обслуживание холодильных камер',
+  description:
+    'Ремонт торгового, промышленного и климатического холодильного оборудования, автокондиционеров и рефрижераторов в Иркутске. Выезд 24/7, диагностика, гарантия до 1 года.',
+  keywords:
+    'ремонт холодильного оборудования Иркутск, ремонт торгового холодильного оборудования, ремонт промышленного холодильного оборудования, ремонт рефрижераторов, ремонт автокондиционеров, ремонт кондиционеров Иркутск, обслуживание холодильных камер',
   alternates: {
     canonical: 'https://федерация-холода.рф/services',
   },
   openGraph: {
     title: 'Услуги по ремонту холодильного оборудования в Иркутске',
-    description: 'Полный комплекс ремонта и обслуживания холодильного и климатического оборудования. Срочный выезд, диагностика, гарантия до 1 года.',
+    description:
+      'Полный комплекс ремонта и обслуживания холодильного и климатического оборудования. Срочный выезд, диагностика, гарантия до 1 года.',
     url: 'https://федерация-холода.рф/services',
     type: 'website',
-    images: [{ url: '/images/og-cover.svg', width: 1200, height: 630, alt: 'Услуги Федерации Холода' }],
+    images: [
+      { url: '/images/og-cover.svg', width: 1200, height: 630, alt: 'Услуги Федерации Холода' },
+    ],
   },
 };
 
@@ -33,8 +38,8 @@ export default async function ServicesPage() {
     'Торговое холодильное оборудование': 'trade',
     'Промышленное холодильное оборудование': 'industrial',
     'Климатическое оборудование': 'climate',
-    'Автокондиционеры': 'auto',
-    'Рефрижераторы': 'refrigerator',
+    Автокондиционеры: 'auto',
+    Рефрижераторы: 'refrigerator',
   };
 
   const serviceSchema = {
@@ -52,7 +57,10 @@ export default async function ServicesPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <div className="bg-slate-900 px-4 sm:px-6 lg:px-8 pt-6">
         <div className="max-w-7xl mx-auto">
           <Breadcrumbs items={[{ label: 'Услуги', href: '/services' }]} />

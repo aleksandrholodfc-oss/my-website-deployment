@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Image as ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
@@ -50,7 +50,17 @@ export default function GalleryClient({ gallery }: GalleryClientProps) {
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
-            {category === 'all' ? 'Все' : category === 'trade' ? 'Торговое' : category === 'industrial' ? 'Промышленное' : category === 'climate' ? 'Климатическое' : category === 'auto' ? 'Авто' : 'Рефрижераторы'}
+            {category === 'all'
+              ? 'Все'
+              : category === 'trade'
+                ? 'Торговое'
+                : category === 'industrial'
+                  ? 'Промышленное'
+                  : category === 'climate'
+                    ? 'Климатическое'
+                    : category === 'auto'
+                      ? 'Авто'
+                      : 'Рефрижераторы'}
           </button>
         ))}
       </div>
@@ -58,7 +68,7 @@ export default function GalleryClient({ gallery }: GalleryClientProps) {
         {gallery
           ?.filter((item: any) => selectedCategory === 'all' || item.category === selectedCategory)
           .map((item: any, index: number) => (
-            <motion.div
+            <m.div
               key={item.id}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -86,29 +96,41 @@ export default function GalleryClient({ gallery }: GalleryClientProps) {
                   <p className="text-xs sm:text-sm text-gray-300">{item.description}</p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
       </div>
 
       {selectedImage && (
-        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-2 sm:p-4" onClick={closeImage}>
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-2 sm:p-4"
+          onClick={closeImage}
+        >
           <button
             className="absolute top-2 sm:top-4 right-2 sm:right-4 text-white hover:text-gray-300 transition-colors p-2"
-            onClick={(e) => { e.stopPropagation(); closeImage(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              closeImage();
+            }}
           >
             <X size={32} className="w-6 h-6 sm:w-8 sm:h-8" />
           </button>
 
           <button
             className="absolute left-2 sm:left-4 text-white hover:text-gray-300 transition-colors p-2"
-            onClick={(e) => { e.stopPropagation(); prevImage(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              prevImage();
+            }}
           >
             <ChevronLeft size={48} className="w-8 h-8 sm:w-12 sm:h-12" />
           </button>
 
           <button
             className="absolute right-2 sm:right-4 text-white hover:text-gray-300 transition-colors p-2"
-            onClick={(e) => { e.stopPropagation(); nextImage(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              nextImage();
+            }}
           >
             <ChevronRight size={48} className="w-8 h-8 sm:w-12 sm:h-12" />
           </button>
@@ -128,7 +150,9 @@ export default function GalleryClient({ gallery }: GalleryClientProps) {
                   <ImageIcon className="w-16 h-16 sm:w-24 sm:h-24 text-blue-600" />
                 </div>
               )}
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">{selectedImage.title}</h3>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 sm:mb-2">
+                {selectedImage.title}
+              </h3>
               <p className="text-gray-600 text-sm sm:text-base">{selectedImage.description}</p>
               <p className="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-4">
                 Изображение {currentIndex + 1} из {gallery?.length || 0}
