@@ -73,6 +73,8 @@ export default async function AboutPage() {
                 width={200}
                 height={200}
                 className="w-3/4 h-3/4 object-contain relative z-10"
+                priority
+                sizes="(max-width: 768px) 150px, 200px"
               />
             </div>
             <div className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-lg sm:rounded-xl p-3 sm:p-5 shadow-xl shadow-blue-500/20">
