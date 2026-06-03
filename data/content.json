@@ -808,40 +808,94 @@
   },
   "gallery": [
     {
-      "id": 1,
-      "title": "Ремонт холодильной камеры",
-      "description": "Замена компрессора в промышленной холодильной камере",
-      "image": "/images/prom.jpg"
+      "src": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+      "alt": "Ремонт промышленного компрессора",
+      "category": "industrial",
+      "title": "Промышленный компрессор"
     },
     {
-      "id": 2,
-      "title": "Обслуживание чиллера",
-      "description": "Плановое обслуживание чиллерной установки",
-      "image": "/images/prom.jpg"
+      "src": "https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&q=80",
+      "alt": "Обслуживание торговых витрин",
+      "category": "trade",
+      "title": "Торговые витрины"
     },
     {
-      "id": 3,
-      "title": "Ремонт рефрижератора",
-      "description": "Ремонт холодильной установки грузовика",
-      "image": "/images/ref.png"
+      "src": "https://images.unsplash.com/photo-1621905252507-b354bc2a196c?w=800&q=80",
+      "alt": "Установка кондиционера",
+      "category": "climate",
+      "title": "Монтаж сплит-системы"
     },
     {
-      "id": 4,
-      "title": "Монтаж кондиционера",
-      "description": "Установка мультисплит-системы в офисе",
-      "image": "/images/klimatika.jpg"
+      "src": "https://images.unsplash.com/photo-1632823471565-1ec2c63dbd0c?w=800&q=80",
+      "alt": "Ремонт автокондиционера",
+      "category": "auto",
+      "title": "Диагностика автокондиционера"
     },
     {
-      "id": 5,
-      "title": "Заправка фреоном",
-      "description": "Заправка автокондиционера фреоном",
-      "image": "/images/auto.jpg"
+      "src": "https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&q=80",
+      "alt": "Ремонт рефрижератора грузовика",
+      "category": "refrigerator",
+      "title": "Транспортный рефрижератор"
     },
     {
-      "id": 6,
-      "title": "Диагностика оборудования",
-      "description": "Поиск утечки в системе охлаждения",
-      "image": "/images/torgovoe.jpg"
+      "src": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
+      "alt": "Обслуживание холодильной камеры",
+      "category": "industrial",
+      "title": "Холодильная камера"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1540340061722-9293d5163008?w=800&q=80",
+      "alt": "Ремонт торгового холодильника",
+      "category": "trade",
+      "title": "Холодильный шкаф"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1520699478448-3d1c8e4b2b0c?w=800&q=80",
+      "alt": "Промышленная вентиляция",
+      "category": "climate",
+      "title": "Вентиляционная установка"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80",
+      "alt": "Заправка кондиционера в машине",
+      "category": "auto",
+      "title": "Заправка фреоном"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?w=800&q=80",
+      "alt": "Ремонт системы охлаждения грузовика",
+      "category": "refrigerator",
+      "title": "Ремонт ХОУ"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1565608411337-091196303254?w=800&q=80",
+      "alt": "Монтаж чиллера",
+      "category": "industrial",
+      "title": "Установка чиллера"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80",
+      "alt": "Торговый стеллаж с охлаждением",
+      "category": "trade",
+      "title": "Холодильная горка"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80",
+      "alt": "Прецизионный кондиционер",
+      "category": "climate",
+      "title": "Серверное охлаждение"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80",
+      "alt": "Ремонт радиатора автомобиля",
+      "category": "auto",
+      "title": "Радиатор охлаждения"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1606148664264-5089f286803b?w=800&q=80",
+      "alt": "Рефрижераторный полуприцеп",
+      "category": "refrigerator",
+      "title": "Обслуживание полуприцепа"
     }
   ],
   "testimonials": [

@@ -1,23 +1,42 @@
 import { cookies } from 'next/headers';
+import { createHmac, timingSafeEqual, randomUUID } from 'crypto';
 
-const CSRF_SECRET = process.env.CSRF_SECRET || 'your-secret-key-change-in-production';
+const CSRF_SECRET = process.env.CSRF_SECRET;
+
+if (!CSRF_SECRET && process.env.NODE_ENV === 'production') {
+  throw new Error('CSRF_SECRET environment variable is required in production');
+}
+
+const secret = CSRF_SECRET || 'dev-secret-key-at-least-32-chars-long-!!!';
 
 export async function generateCsrfToken(): Promise<string> {
-  const timestamp = Date.now().toString();
-  const token = Buffer.from(`${CSRF_SECRET}:${timestamp}`).toString('base64');
-  return token;
+  const token = randomUUID();
+  const signature = createHmac('sha256', secret).update(token).digest('base64');
+  return `${token}.${signature}`;
 }
 
 export async function validateCsrfToken(token: string): Promise<boolean> {
+  if (!token || typeof token !== 'string') return false;
+
+  const [uuid, signature] = token.split('.');
+  if (!uuid || !signature) return false;
+
+  const cookieStore = await cookies();
+  const cookieToken = cookieStore.get('csrf_token')?.value;
+
+  if (!cookieToken || cookieToken !== token) return false;
+
   try {
-    const decoded = Buffer.from(token, 'base64').toString('utf-8');
-    const [secret, timestamp] = decoded.split(':');
+    const expectedSignature = createHmac('sha256', secret).update(uuid).digest('base64');
 
-    if (secret !== CSRF_SECRET) return false;
+    const signatureBuffer = Buffer.from(signature, 'base64');
+    const expectedBuffer = Buffer.from(expectedSignature, 'base64');
 
-    // Token expires after 1 hour
-    const tokenAge = Date.now() - parseInt(timestamp);
-    return tokenAge < 3600000;
+    if (signatureBuffer.length !== expectedBuffer.length) {
+      return false;
+    }
+
+    return timingSafeEqual(signatureBuffer, expectedBuffer);
   } catch {
     return false;
   }
@@ -30,6 +49,7 @@ export async function setCsrfCookie() {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'strict',
+    path: '/',
     maxAge: 3600, // 1 hour
   });
   return token;

@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     siteName: 'Федерация Холода',
     images: [
       {
-        url: '/images/og-cover.svg',
+        url: '/images/og-cover.jpg',
         width: 1200,
         height: 630,
         alt: 'Федерация Холода — ремонт холодильного оборудования в Иркутске',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: 'Федерация Холода — Ремонт холодильного оборудования',
     description:
       'Профессиональный ремонт и обслуживание холодильного оборудования. Выезд 24/7, гарантия до 1 года.',
-    images: ['/images/og-cover.svg'],
+    images: ['/images/og-cover.jpg'],
   },
   alternates: {
     canonical: 'https://федерация-холода.рф',
