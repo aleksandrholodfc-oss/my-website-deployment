@@ -60,20 +60,14 @@ git clone https://github.com/FederationCold/my-website-deployment.git .
 
 ### 2.3 Настрой переменные окружения
 
-Создай файл `.env`:
+Создай файл `.env` на основе шаблона:
 
 ```bash
+cp .env.example .env
 nano .env
 ```
 
-Вставь и заполни (обязательно для работы):
-
-```env
-CSRF_SECRET=твой_секрет_минимум_32_символа
-ADMIN_PASSWORD_HASH=salt:hash_для_админки
-TELEGRAM_BOT_TOKEN=токен_бота
-TELEGRAM_CHAT_ID=id_чата
-```
+**Обязательно** заполните все поля. Без `CSRF_SECRET` (минимум 32 символа) и `ADMIN_PASSWORD_HASH` сайт не запустится в режиме продакшена.
 
 ### 2.4 Установи зависимости и собери проект
 
@@ -90,11 +84,15 @@ npm run build
 
 ### 3.1 Подготовка standalone сборки
 
-Next.js собирает все необходимые файлы в папку `.next/standalone`, но статические файлы нужно скопировать вручную:
+Next.js собирает приложение в папку `.next/standalone`. Для корректной работы стилей и картинок нужно скопировать статические файлы вручную:
 
 ```bash
+# Копируем папку public (картинки, фавиконы)
 cp -r public .next/standalone/
-cp -r .next/static .next/standalone/.next/
+
+# Копируем статику сборки (CSS, JS чанки)
+mkdir -p .next/standalone/.next/static
+cp -r .next/static/* .next/standalone/.next/static/
 ```
 
 ### 3.2 Стартуй сайт

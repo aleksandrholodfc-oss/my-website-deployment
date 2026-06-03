@@ -4,58 +4,49 @@
 
 ## 🛠 Технологический стек
 
-- **Next.js 14+** (App Router) — React-фреймворк для производства
-- **TypeScript** (strict mode) — типизация для надёжности кода
-- **Tailwind CSS** — utility-first CSS фреймворк
-- **Framer Motion** — плавные анимации при скролле и взаимодействии
-- **Lucide React** — современная библиотека иконок
-- **next-seo** — SEO оптимизация через metadata API
+- **Next.js 14+** (App Router)
+- **TypeScript** (strict mode)
+- **Tailwind CSS**
+- **Framer Motion**
+- **Lucide React**
+- **Zod + React Hook Form**
 
-## 📄 Структура сайта
-
-- `/` — Главная страница с hero-блоком, преимуществами, услугами
-- `/services` — Детальная страница услуг с прайс-листом
-- `/about` — Страница о компании (история, команда, гарантии)
-- `/contacts` — Контакты с формой заявки
-- `/admin` — Админ-панель для редактирования контента
-
-## 🚀 Установка и запуск
+## 🚀 Быстрый старт
 
 ### 1. Подготовка окружения
 
-Создайте файл `.env` в корне проекта на основе `.env.example`:
+Создайте файл `.env` в корне проекта, скопировав его из шаблона:
 
 ```bash
 cp .env.example .env
 ```
 
-Обязательно заполните следующие переменные:
-- `CSRF_SECRET` — любая случайная строка (минимум 32 символа). Можно сгенерировать командой `openssl rand -base64 32`.
-- `ADMIN_PASSWORD_HASH` — хеш пароля для админки в формате `salt:hash`.
-- `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID` — для получения заявок.
+**Важно:** Обязательно заполните все переменные в `.env`. Без них сборка в режиме production не запустится.
+- `CSRF_SECRET`: минимум 32 символа.
+- `ADMIN_PASSWORD_HASH`: в формате `salt:hash`.
 
-### 2. Установка зависимостей
+### 2. Установка и запуск
 
 ```bash
 npm install
-```
-
-### 3. Запуск dev-сервера
-
-```bash
 npm run dev
 ```
 
-Сайт будет доступен по адресу: http://localhost:3000
+Сайт будет доступен по адресу: [http://localhost:3000](http://localhost:3000)
 
-### 4. Сборка для продакшена
+## 📦 Деплой (Production)
 
+Сайт настроен на работу в режиме `standalone` (Next.js 14). Подробная инструкция по развертыванию на сервере (например, Timeweb) находится в файле [DEPLOY_TMEWEB.md](./DEPLOY_TMEWEB.md).
+
+Краткий цикл сборки:
 ```bash
 npm run build
-npm start
+# После сборки необходимо скопировать статику в standalone папку
+cp -r public .next/standalone/
+cp -r .next/static .next/standalone/.next/
+# Запуск
+node .next/standalone/server.js
 ```
-
-*Примечание: в режиме продакшена сайт использует `output: 'standalone'` для оптимизации.*
 
 ## 📁 Структура проекта
 
@@ -188,9 +179,3 @@ my-website/
 ## 📄 Лицензия
 
 Проект создан для демонстрационных целей.
-# my-website-deployment
-# my-website-deployment
-# my-website-deployment
-# my-website-deployment
-# my-website-deployment
-# my-website-deployment
