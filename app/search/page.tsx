@@ -40,9 +40,22 @@ function SearchContent() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Breadcrumbs items={[{ label: 'Поиск', href: '/search' }]} />
         </div>
-        <SectionHeader title="Поиск по сайту" subtitle="Результаты поиска" centered titleColor="text-white" />
+        <SectionHeader
+          title="Поиск по сайту"
+          subtitle="Результаты поиска"
+          centered
+          titleColor="text-white"
+        />
         <div className="max-w-3xl mx-auto mb-12">
-          <form onSubmit={(e) => { e.preventDefault(); router.push(`/search?q=${encodeURIComponent((e.target as HTMLFormElement).querySelector('input')?.value || '')}`); }} className="relative">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              router.push(
+                `/search?q=${encodeURIComponent((e.target as HTMLFormElement).querySelector('input')?.value || '')}`
+              );
+            }}
+            className="relative"
+          >
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
             <input
               type="text"
@@ -80,7 +93,13 @@ function SearchContent() {
                           <div className="flex items-start justify-between gap-4">
                             <div className="flex-1">
                               <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold mb-2">
-                                {result.type === 'service' ? 'Услуга' : result.type === 'page' ? 'Страница' : result.type === 'advantage' ? 'Преимущество' : 'FAQ'}
+                                {result.type === 'service'
+                                  ? 'Услуга'
+                                  : result.type === 'page'
+                                    ? 'Страница'
+                                    : result.type === 'advantage'
+                                      ? 'Преимущество'
+                                      : 'FAQ'}
                               </span>
                               <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                                 {result.title}
@@ -126,17 +145,24 @@ function SearchContent() {
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={
-      <Section>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Breadcrumbs items={[{ label: 'Поиск', href: '/search' }]} />
-        </div>
-        <SectionHeader title="Поиск по сайту" subtitle="Результаты поиска" centered titleColor="text-white" />
-        <div className="max-w-4xl mx-auto text-center py-12">
-          <div className="text-xl text-gray-600">Загрузка...</div>
-        </div>
-      </Section>
-    }>
+    <Suspense
+      fallback={
+        <Section>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <Breadcrumbs items={[{ label: 'Поиск', href: '/search' }]} />
+          </div>
+          <SectionHeader
+            title="Поиск по сайту"
+            subtitle="Результаты поиска"
+            centered
+            titleColor="text-white"
+          />
+          <div className="max-w-4xl mx-auto text-center py-12">
+            <div className="text-xl text-gray-600">Загрузка...</div>
+          </div>
+        </Section>
+      }
+    >
       <SearchContent />
     </Suspense>
   );

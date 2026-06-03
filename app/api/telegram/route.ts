@@ -8,10 +8,7 @@ export async function POST(request: NextRequest) {
 
     // Validate CSRF token
     if (!csrfToken || !(await validateCsrfToken(csrfToken))) {
-      return NextResponse.json(
-        { error: 'Invalid CSRF token' },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: 'Invalid CSRF token' }, { status: 403 });
     }
 
     // Telegram Bot API configuration
@@ -19,10 +16,7 @@ export async function POST(request: NextRequest) {
     const CHAT_ID = process.env.TELEGRAM_CHAT_ID || '@federation_cold';
 
     if (!BOT_TOKEN) {
-      return NextResponse.json(
-        { error: 'Telegram bot token not configured' },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: 'Telegram bot token not configured' }, { status: 500 });
     }
 
     // Format message
@@ -56,9 +50,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, data });
   } catch (error) {
     console.error('Error sending to Telegram:', error);
-    return NextResponse.json(
-      { error: 'Failed to send message' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to send message' }, { status: 500 });
   }
 }
