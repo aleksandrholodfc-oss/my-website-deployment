@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: 'Полный комплекс ремонта и обслуживания холодильного и климатического оборудования. Срочный выезд, диагностика, гарантия до 1 года.',
     url: 'https://федерация-холода.рф/services',
     type: 'website',
-    images: [{ url: '/images/og-cover.svg', width: 1200, height: 630, alt: 'Услуги Федерации Холода' }],
+    images: [{ url: '/images/og-cover.jpg', width: 1200, height: 630, alt: 'Услуги Федерации Холода' }],
   },
 };
 
