@@ -431,6 +431,30 @@ export default function AdminPage() {
                 ))}
               </div>
             </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-4 text-gray-800">Статистика</h3>
+              <div className="space-y-4">
+                {content.about?.stats?.map((stat: any, index: number) => (
+                  <div key={index} className="flex gap-2 mb-2">
+                    <input
+                      type="text"
+                      value={stat.value}
+                      onChange={(e) => updateContent(`about.stats.${index}.value`, e.target.value)}
+                      placeholder="Значение"
+                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    />
+                    <input
+                      type="text"
+                      value={stat.label}
+                      onChange={(e) => updateContent(`about.stats.${index}.label`, e.target.value)}
+                      placeholder="Метка"
+                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         );
 
@@ -464,9 +488,16 @@ export default function AdminPage() {
                 </div>
                 <input
                   type="text"
-                  value={item.image}
-                  onChange={(e) => updateContent(`gallery.${index}.image`, e.target.value)}
+                  value={item.src || item.image || ''}
+                  onChange={(e) => updateContent(`gallery.${index}.src`, e.target.value)}
                   placeholder="URL изображения"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                />
+                <input
+                  type="text"
+                  value={item.alt || ''}
+                  onChange={(e) => updateContent(`gallery.${index}.alt`, e.target.value)}
+                  placeholder="Alt-текст (описание для SEO)"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                 />
                 <textarea

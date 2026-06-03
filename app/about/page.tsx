@@ -84,13 +84,7 @@ export default async function AboutPage() {
           <div className="relative order-first lg:order-last">
             <div className="aspect-square bg-gradient-to-br from-blue-600/30 via-purple-500/20 to-cyan-500/30 rounded-xl sm:rounded-2xl flex items-center justify-center border border-blue-500/40 overflow-hidden relative shadow-2xl shadow-blue-500/20">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
-              <Image
-                src={LOGO_SRC}
-                alt="Логотип компании"
-                width={200}
-                height={200}
-                className="w-3/4 h-3/4 object-contain relative z-10"
-              />
+              <Image src={LOGO_SRC} alt="Логотип компании" width={200} height={200} className="w-3/4 h-3/4 object-contain relative z-10" priority sizes="(max-width: 768px) 150px, 200px" />
             </div>
             <div className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-lg sm:rounded-xl p-3 sm:p-5 shadow-xl shadow-blue-500/20">
               <div className="flex items-center gap-2 sm:gap-3">
