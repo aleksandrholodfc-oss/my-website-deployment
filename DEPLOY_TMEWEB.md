@@ -58,7 +58,24 @@ git clone https://github.com/FederationCold/my-website-deployment.git .
 # введи логин и пароль от GitHub, или используй Personal Access Token
 ```
 
-### 2.3 Установи зависимости и собери проект
+### 2.3 Настрой переменные окружения
+
+Создай файл `.env`:
+
+```bash
+nano .env
+```
+
+Вставь и заполни (обязательно для работы):
+
+```env
+CSRF_SECRET=твой_секрет_минимум_32_символа
+ADMIN_PASSWORD_HASH=salt:hash_для_админки
+TELEGRAM_BOT_TOKEN=токен_бота
+TELEGRAM_CHAT_ID=id_чата
+```
+
+### 2.4 Установи зависимости и собери проект
 
 ```bash
 npm ci
@@ -69,14 +86,25 @@ npm run build
 
 ## 3. Запуск сайта через PM2
 
-### 3.1 Стартуй сайт
+Мы будем использовать режим `standalone` для повышения производительности и уменьшения размера приложения.
+
+### 3.1 Подготовка standalone сборки
+
+Next.js собирает все необходимые файлы в папку `.next/standalone`, но статические файлы нужно скопировать вручную:
+
+```bash
+cp -r public .next/standalone/
+cp -r .next/static .next/standalone/.next/
+```
+
+### 3.2 Стартуй сайт
 
 ```bash
 cd /var/www/my-website
-pm2 start npm --name "my-website" -- run start
+pm2 start .next/standalone/server.js --name "my-website"
 ```
 
-### 3.2 Проверь, что работает
+### 3.3 Проверь, что работает
 
 ```bash
 pm2 status
@@ -154,6 +182,8 @@ cd /var/www/my-website
 git pull
 npm ci
 npm run build
+cp -r public .next/standalone/
+cp -r .next/static .next/standalone/.next/
 pm2 restart my-website
 ```
 
@@ -217,7 +247,9 @@ cd /var/www/my-website
 git clone https://github.com/FederationCold/my-website-deployment.git .
 npm ci
 npm run build
-pm2 start npm --name "my-website" -- run start
+cp -r public .next/standalone/
+cp -r .next/static .next/standalone/.next/
+pm2 start .next/standalone/server.js --name "my-website"
 pm2 startup systemd
 pm2 save
 ```
