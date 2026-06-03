@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import Link from 'next/link';
 
 export default function ContactForm() {
-  const [form, setForm] = useState({ name: '', phone: '', message: '' });
+  const [form, setForm] = useState({ name: '', phone: '', message: '', website: '' });
   const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -61,15 +61,16 @@ export default function ContactForm() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken,
         },
-        body: JSON.stringify({ ...form, csrfToken }),
+        body: JSON.stringify(form),
       });
 
       const data = await response.json();
 
       if (data.success) {
         setSubmitted(true);
-        setForm({ name: '', phone: '', message: '' });
+        setForm({ name: '', phone: '', message: '', website: '' });
         setConsent(false);
         setTimeout(() => setSubmitted(false), 5000);
       } else {
@@ -125,6 +126,16 @@ export default function ContactForm() {
               placeholder="Опишите проблему с оборудованием..."
             />
             {errors.message && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.message}</p>}
+          </div>
+          <div className="hidden" aria-hidden="true">
+            <input
+              type="text"
+              name="website"
+              value={form.website}
+              onChange={(e) => setForm({ ...form, website: e.target.value })}
+              tabIndex={-1}
+              autoComplete="off"
+            />
           </div>
           <Button type="submit" className="w-full text-sm sm:text-base">
             <Send className="w-4 h-4 mr-2" /> Отправить заявку

@@ -15,6 +15,7 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
     phone: '',
     email: '',
     description: '',
+    website: '',
   });
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,13 +45,16 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
     try {
       const response = await fetch('/api/request', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, csrfToken }),
+        headers: {
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken,
+        },
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         setMessage('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-        setFormData({ name: '', phone: '', email: '', description: '' });
+        setFormData({ name: '', phone: '', email: '', description: '', website: '' });
         setConsent(false);
         setTimeout(() => {
           onClose();
@@ -102,6 +106,17 @@ export default function RequestModal({ isOpen, onClose }: RequestModalProps) {
                 placeholder="Иван Иванов"
               />
             </div>
+          </div>
+
+          <div className="hidden" aria-hidden="true">
+            <input
+              type="text"
+              name="website"
+              value={formData.website}
+              onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+              tabIndex={-1}
+              autoComplete="off"
+            />
           </div>
 
           <div>
