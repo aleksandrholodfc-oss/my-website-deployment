@@ -3,18 +3,20 @@ import { createHmac, timingSafeEqual, randomUUID } from 'crypto';
 
 const CSRF_SECRET = process.env.CSRF_SECRET;
 
-if (!CSRF_SECRET && process.env.NODE_ENV === 'production') {
-  throw new Error('CSRF_SECRET environment variable is required in production');
+function getSecret() {
+  if (!CSRF_SECRET) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('CSRF_SECRET environment variable is required in production');
+    }
+    // Fallback for development only
+    return 'dev-secret-key-at-least-32-chars-long-!!!';
+  }
+  return CSRF_SECRET;
 }
-
-// Fallback for development only, but we should encourage setting it
-const secret = CSRF_SECRET || 'dev-secret-key-at-least-32-chars-long-!!!';
 
 export async function generateCsrfToken(): Promise<string> {
   const token = randomUUID();
-  const signature = createHmac('sha256', secret)
-    .update(token)
-    .digest('base64');
+  const signature = createHmac('sha256', getSecret()).update(token).digest('base64');
   return `${token}.${signature}`;
 }
 
@@ -25,9 +27,7 @@ export async function validateCsrfToken(token: string): Promise<boolean> {
   if (!uuid || !signature) return false;
 
   try {
-    const expectedSignature = createHmac('sha256', secret)
-      .update(uuid)
-      .digest('base64');
+    const expectedSignature = createHmac('sha256', getSecret()).update(uuid).digest('base64');
 
     const signatureBuffer = Buffer.from(signature);
     const expectedBuffer = Buffer.from(expectedSignature);

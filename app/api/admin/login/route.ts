@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { pbkdf2Sync, timingSafeEqual, createHmac } from 'crypto';
 
+export const dynamic = 'force-dynamic';
+
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH;
 const CSRF_SECRET = process.env.CSRF_SECRET || 'dev-secret';
 
@@ -36,9 +38,7 @@ export async function POST(request: Request) {
 
       // Create a signed session token
       const sessionData = `admin:${now}`;
-      const signature = createHmac('sha256', CSRF_SECRET)
-        .update(sessionData)
-        .digest('base64');
+      const signature = createHmac('sha256', CSRF_SECRET).update(sessionData).digest('base64');
       const token = `${sessionData}.${signature}`;
 
       const response = NextResponse.json({ success: true });

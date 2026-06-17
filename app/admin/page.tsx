@@ -2,7 +2,20 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Home, Wrench, DollarSign, Building2, Settings, LogOut, Image, Users, Star, Info, Lock } from 'lucide-react';
+import {
+  Save,
+  Home,
+  Wrench,
+  DollarSign,
+  Building2,
+  Settings,
+  LogOut,
+  Image,
+  Users,
+  Star,
+  Info,
+  Lock,
+} from 'lucide-react';
 import Link from 'next/link';
 
 export default function AdminPage() {
@@ -138,9 +151,7 @@ export default function AdminPage() {
                 placeholder="Введите пароль"
               />
             </div>
-            {loginError && (
-              <p className="text-red-600 text-sm">{loginError}</p>
-            )}
+            {loginError && <p className="text-red-600 text-sm">{loginError}</p>}
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
@@ -195,7 +206,10 @@ export default function AdminPage() {
               <LogOut size={20} />
               Выйти
             </button>
-            <Link href="/" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+            >
               На сайт
             </Link>
           </div>
@@ -242,7 +256,9 @@ export default function AdminPage() {
               </div>
 
               {message && (
-                <div className={`mb-4 p-4 rounded-lg ${message.includes('Ошибка') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+                <div
+                  className={`mb-4 p-4 rounded-lg ${message.includes('Ошибка') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}
+                >
                   {message}
                 </div>
               )}
@@ -250,7 +266,9 @@ export default function AdminPage() {
               {activeTab === 'hero' && (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Заголовок</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Заголовок
+                    </label>
                     <input
                       type="text"
                       value={content.hero?.title || ''}
@@ -259,7 +277,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Подзаголовок</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Подзаголовок
+                    </label>
                     <input
                       type="text"
                       value={content.hero?.subtitle || ''}
@@ -277,7 +297,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Текст кнопки</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Текст кнопки
+                    </label>
                     <input
                       type="text"
                       value={content.hero?.cta || ''}
@@ -286,7 +308,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Изображение (URL)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Изображение (URL)
+                    </label>
                     <input
                       type="text"
                       value={content.hero?.image || ''}
@@ -325,13 +349,17 @@ export default function AdminPage() {
                         <input
                           type="text"
                           value={adv.title}
-                          onChange={(e) => updateContent(`advantages.${index}.title`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`advantages.${index}.title`, e.target.value)
+                          }
                           placeholder="Заголовок"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <textarea
                           value={adv.description}
-                          onChange={(e) => updateContent(`advantages.${index}.description`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`advantages.${index}.description`, e.target.value)
+                          }
                           placeholder="Описание"
                           rows={2}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
@@ -351,14 +379,18 @@ export default function AdminPage() {
                         <input
                           type="text"
                           value={service.category}
-                          onChange={(e) => updateContent(`services.${index}.category`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`services.${index}.category`, e.target.value)
+                          }
                           placeholder="Название категории"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <input
                           type="text"
                           value={service.description || ''}
-                          onChange={(e) => updateContent(`services.${index}.description`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`services.${index}.description`, e.target.value)
+                          }
                           placeholder="Описание категории"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
@@ -370,10 +402,14 @@ export default function AdminPage() {
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Услуги (каждая с новой строки)</label>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Услуги (каждая с новой строки)
+                          </label>
                           <textarea
                             value={service.items.join('\n')}
-                            onChange={(e) => updateContent(`services.${index}.items`, e.target.value.split('\n'))}
+                            onChange={(e) =>
+                              updateContent(`services.${index}.items`, e.target.value.split('\n'))
+                            }
                             rows={6}
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
                           />
@@ -395,7 +431,12 @@ export default function AdminPage() {
                             <input
                               type="text"
                               value={item.name}
-                              onChange={(e) => updateContent(`priceList.${catIndex}.items.${itemIndex}.name`, e.target.value)}
+                              onChange={(e) =>
+                                updateContent(
+                                  `priceList.${catIndex}.items.${itemIndex}.name`,
+                                  e.target.value
+                                )
+                              }
                               placeholder="Название услуги"
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                             />
@@ -404,7 +445,12 @@ export default function AdminPage() {
                             <input
                               type="text"
                               value={item.price}
-                              onChange={(e) => updateContent(`priceList.${catIndex}.items.${itemIndex}.price`, e.target.value)}
+                              onChange={(e) =>
+                                updateContent(
+                                  `priceList.${catIndex}.items.${itemIndex}.price`,
+                                  e.target.value
+                                )
+                              }
                               placeholder="Цена"
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                             />
@@ -425,13 +471,17 @@ export default function AdminPage() {
                         <input
                           type="text"
                           value={promo.title}
-                          onChange={(e) => updateContent(`promotions.${index}.title`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`promotions.${index}.title`, e.target.value)
+                          }
                           placeholder="Заголовок акции"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <textarea
                           value={promo.description}
-                          onChange={(e) => updateContent(`promotions.${index}.description`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`promotions.${index}.description`, e.target.value)
+                          }
                           placeholder="Описание акции"
                           rows={2}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
@@ -439,14 +489,18 @@ export default function AdminPage() {
                         <input
                           type="text"
                           value={promo.validUntil}
-                          onChange={(e) => updateContent(`promotions.${index}.validUntil`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`promotions.${index}.validUntil`, e.target.value)
+                          }
                           placeholder="Срок действия"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <input
                           type="text"
                           value={promo.code}
-                          onChange={(e) => updateContent(`promotions.${index}.code`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`promotions.${index}.code`, e.target.value)
+                          }
                           placeholder="Промокод"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
@@ -465,13 +519,17 @@ export default function AdminPage() {
                         <input
                           type="text"
                           value={guarantee.title}
-                          onChange={(e) => updateContent(`guarantees.${index}.title`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`guarantees.${index}.title`, e.target.value)
+                          }
                           placeholder="Заголовок гарантии"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <textarea
                           value={guarantee.description}
-                          onChange={(e) => updateContent(`guarantees.${index}.description`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`guarantees.${index}.description`, e.target.value)
+                          }
                           placeholder="Описание гарантии"
                           rows={2}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
@@ -528,7 +586,9 @@ export default function AdminPage() {
                       <input
                         type="text"
                         value={content.equipmentImages?.industrial || '/images/prom.jpg'}
-                        onChange={(e) => updateContent('equipmentImages.industrial', e.target.value)}
+                        onChange={(e) =>
+                          updateContent('equipmentImages.industrial', e.target.value)
+                        }
                         placeholder="URL изображения"
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       />
@@ -573,7 +633,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Городской телефон</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Городской телефон
+                    </label>
                     <input
                       type="text"
                       value={content.contacts?.phoneCity || ''}
@@ -601,7 +663,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Время работы</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Время работы
+                    </label>
                     <input
                       type="text"
                       value={content.contacts?.hours || ''}
@@ -610,7 +674,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">URL карты</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      URL карты
+                    </label>
                     <input
                       type="text"
                       value={content.contacts.mapUrl || ''}
@@ -637,7 +703,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Расчётный счёт</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Расчётный счёт
+                    </label>
                     <input
                       type="text"
                       value={content.contacts.bankAccount || ''}
@@ -669,7 +737,9 @@ export default function AdminPage() {
               {activeTab === 'about' && (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Название компании</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Название компании
+                    </label>
                     <input
                       type="text"
                       value={content.company?.name || ''}
@@ -678,7 +748,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Описание компании</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Описание компании
+                    </label>
                     <textarea
                       value={content.company?.description || ''}
                       onChange={(e) => updateContent('company.description', e.target.value)}
@@ -687,7 +759,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Логотип (URL)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Логотип (URL)
+                    </label>
                     <input
                       type="text"
                       value={content.company?.logo || ''}
@@ -697,7 +771,9 @@ export default function AdminPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">История компании</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      История компании
+                    </label>
                     <textarea
                       value={content.about?.history || ''}
                       onChange={(e) => updateContent('about.history', e.target.value)}
@@ -721,13 +797,17 @@ export default function AdminPage() {
                         <input
                           type="text"
                           value={value.title}
-                          onChange={(e) => updateContent(`about.values.${index}.title`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`about.values.${index}.title`, e.target.value)
+                          }
                           placeholder="Заголовок ценности"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <textarea
                           value={value.description}
-                          onChange={(e) => updateContent(`about.values.${index}.description`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`about.values.${index}.description`, e.target.value)
+                          }
                           placeholder="Описание ценности"
                           rows={2}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
@@ -742,21 +822,27 @@ export default function AdminPage() {
                         <input
                           type="text"
                           value={member.name}
-                          onChange={(e) => updateContent(`about.team.${index}.name`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`about.team.${index}.name`, e.target.value)
+                          }
                           placeholder="Имя"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <input
                           type="text"
                           value={member.position}
-                          onChange={(e) => updateContent(`about.team.${index}.position`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`about.team.${index}.position`, e.target.value)
+                          }
                           placeholder="Должность"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <input
                           type="text"
                           value={member.experience}
-                          onChange={(e) => updateContent(`about.team.${index}.experience`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`about.team.${index}.experience`, e.target.value)
+                          }
                           placeholder="Опыт"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
@@ -770,14 +856,18 @@ export default function AdminPage() {
                         <input
                           type="text"
                           value={stat.value}
-                          onChange={(e) => updateContent(`about.stats.${index}.value`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`about.stats.${index}.value`, e.target.value)
+                          }
                           placeholder="Значение"
                           className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <input
                           type="text"
                           value={stat.label}
-                          onChange={(e) => updateContent(`about.stats.${index}.label`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`about.stats.${index}.label`, e.target.value)
+                          }
                           placeholder="Метка"
                           className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
@@ -816,7 +906,9 @@ export default function AdminPage() {
                         />
                         <select
                           value={item.category || 'all'}
-                          onChange={(e) => updateContent(`gallery.${index}.category`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`gallery.${index}.category`, e.target.value)
+                          }
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         >
                           <option value="all">Все</option>
@@ -841,20 +933,26 @@ export default function AdminPage() {
                         <input
                           type="text"
                           value={testimonial.name}
-                          onChange={(e) => updateContent(`testimonials.${index}.name`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`testimonials.${index}.name`, e.target.value)
+                          }
                           placeholder="Имя клиента"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <input
                           type="text"
                           value={testimonial.company}
-                          onChange={(e) => updateContent(`testimonials.${index}.company`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`testimonials.${index}.company`, e.target.value)
+                          }
                           placeholder="Компания"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         />
                         <textarea
                           value={testimonial.text}
-                          onChange={(e) => updateContent(`testimonials.${index}.text`, e.target.value)}
+                          onChange={(e) =>
+                            updateContent(`testimonials.${index}.text`, e.target.value)
+                          }
                           placeholder="Текст отзыва"
                           rows={3}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
@@ -862,7 +960,9 @@ export default function AdminPage() {
                         <input
                           type="number"
                           value={testimonial.rating}
-                          onChange={(e) => updateContent(`testimonials.${index}.rating`, parseInt(e.target.value))}
+                          onChange={(e) =>
+                            updateContent(`testimonials.${index}.rating`, parseInt(e.target.value))
+                          }
                           min="1"
                           max="5"
                           placeholder="Оценка (1-5)"

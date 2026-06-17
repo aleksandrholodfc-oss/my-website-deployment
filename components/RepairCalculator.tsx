@@ -13,7 +13,10 @@ const equipmentTypes = [
   { id: 'refrigerator', label: 'Рефрижератор', emoji: '🚛', desc: 'Thermo King, Carrier' },
 ];
 
-const problemTypes: Record<string, { id: string; label: string; minPrice: number; maxPrice: number }[]> = {
+const problemTypes: Record<
+  string,
+  { id: string; label: string; minPrice: number; maxPrice: number }[]
+> = {
   trade: [
     { id: 'no_cool', label: 'Не охлаждает / плохо охлаждает', minPrice: 1500, maxPrice: 5000 },
     { id: 'leak', label: 'Утечка фреона', minPrice: 2000, maxPrice: 4500 },
@@ -67,9 +70,9 @@ export default function RepairCalculator() {
   const [urgency, setUrgency] = useState('normal');
   const [showResult, setShowResult] = useState(false);
 
-  const selectedEquipment = equipmentTypes.find(e => e.id === equipment);
-  const selectedProblem = problemTypes[equipment]?.find(p => p.id === problem);
-  const selectedUrgency = urgencyOptions.find(u => u.id === urgency);
+  const selectedEquipment = equipmentTypes.find((e) => e.id === equipment);
+  const selectedProblem = problemTypes[equipment]?.find((p) => p.id === problem);
+  const selectedUrgency = urgencyOptions.find((u) => u.id === urgency);
 
   const calcPrice = () => {
     if (!selectedProblem || !selectedUrgency) return { min: 0, max: 0 };
@@ -103,29 +106,45 @@ export default function RepairCalculator() {
 
       {/* Progress bar */}
       <div className="flex gap-1.5 mb-6">
-        {[0, 1, 2].map(i => (
-          <div key={i} className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${step > i || showResult ? 'bg-blue-500' : step === i ? 'bg-blue-500/60' : 'bg-slate-700'}`} />
+        {[0, 1, 2].map((i) => (
+          <div
+            key={i}
+            className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${step > i || showResult ? 'bg-blue-500' : step === i ? 'bg-blue-500/60' : 'bg-slate-700'}`}
+          />
         ))}
       </div>
 
       <AnimatePresence mode="wait">
         {!showResult ? (
-          <motion.div key={`step-${step}`} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.25 }}>
-
+          <motion.div
+            key={`step-${step}`}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.25 }}
+          >
             {/* Step 0: Equipment type */}
             {step === 0 && (
               <div>
-                <p className="text-slate-300 text-sm font-medium mb-4">Шаг 1 из 3 — Выберите тип оборудования:</p>
+                <p className="text-slate-300 text-sm font-medium mb-4">
+                  Шаг 1 из 3 — Выберите тип оборудования:
+                </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {equipmentTypes.map(eq => (
+                  {equipmentTypes.map((eq) => (
                     <button
                       key={eq.id}
-                      onClick={() => { setEquipment(eq.id); setProblem(''); setStep(1); }}
+                      onClick={() => {
+                        setEquipment(eq.id);
+                        setProblem('');
+                        setStep(1);
+                      }}
                       className="flex items-center gap-3 p-3.5 bg-slate-700/50 hover:bg-slate-700 border border-slate-600/50 hover:border-blue-500/60 rounded-xl transition-all duration-200 text-left group"
                     >
                       <span className="text-2xl">{eq.emoji}</span>
                       <div>
-                        <div className="text-white text-sm font-medium group-hover:text-blue-400 transition-colors">{eq.label}</div>
+                        <div className="text-white text-sm font-medium group-hover:text-blue-400 transition-colors">
+                          {eq.label}
+                        </div>
                         <div className="text-slate-400 text-xs">{eq.desc}</div>
                       </div>
                       <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-blue-400 ml-auto transition-colors" />
@@ -138,19 +157,31 @@ export default function RepairCalculator() {
             {/* Step 1: Problem type */}
             {step === 1 && equipment && (
               <div>
-                <button onClick={() => setStep(0)} className="text-slate-400 hover:text-white text-xs flex items-center gap-1 mb-3 transition-colors">
+                <button
+                  onClick={() => setStep(0)}
+                  className="text-slate-400 hover:text-white text-xs flex items-center gap-1 mb-3 transition-colors"
+                >
                   ← {selectedEquipment?.label}
                 </button>
-                <p className="text-slate-300 text-sm font-medium mb-4">Шаг 2 из 3 — Опишите проблему:</p>
+                <p className="text-slate-300 text-sm font-medium mb-4">
+                  Шаг 2 из 3 — Опишите проблему:
+                </p>
                 <div className="space-y-2">
-                  {problemTypes[equipment].map(p => (
+                  {problemTypes[equipment].map((p) => (
                     <button
                       key={p.id}
-                      onClick={() => { setProblem(p.id); setStep(2); }}
+                      onClick={() => {
+                        setProblem(p.id);
+                        setStep(2);
+                      }}
                       className="w-full flex items-center justify-between p-3.5 bg-slate-700/50 hover:bg-slate-700 border border-slate-600/50 hover:border-blue-500/60 rounded-xl transition-all duration-200 text-left group"
                     >
-                      <span className="text-white text-sm group-hover:text-blue-400 transition-colors">{p.label}</span>
-                      <span className="text-slate-400 text-xs ml-3 shrink-0">от {p.minPrice.toLocaleString()} ₽</span>
+                      <span className="text-white text-sm group-hover:text-blue-400 transition-colors">
+                        {p.label}
+                      </span>
+                      <span className="text-slate-400 text-xs ml-3 shrink-0">
+                        от {p.minPrice.toLocaleString()} ₽
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -160,19 +191,26 @@ export default function RepairCalculator() {
             {/* Step 2: Urgency */}
             {step === 2 && problem && (
               <div>
-                <button onClick={() => setStep(1)} className="text-slate-400 hover:text-white text-xs flex items-center gap-1 mb-3 transition-colors">
+                <button
+                  onClick={() => setStep(1)}
+                  className="text-slate-400 hover:text-white text-xs flex items-center gap-1 mb-3 transition-colors"
+                >
                   ← {selectedProblem?.label}
                 </button>
-                <p className="text-slate-300 text-sm font-medium mb-4">Шаг 3 из 3 — Срочность выезда:</p>
+                <p className="text-slate-300 text-sm font-medium mb-4">
+                  Шаг 3 из 3 — Срочность выезда:
+                </p>
                 <div className="space-y-2.5 mb-5">
-                  {urgencyOptions.map(u => (
+                  {urgencyOptions.map((u) => (
                     <button
                       key={u.id}
                       onClick={() => setUrgency(u.id)}
                       className={`w-full flex items-center justify-between p-3.5 border rounded-xl transition-all duration-200 ${urgency === u.id ? 'bg-blue-500/20 border-blue-500/60 text-white' : 'bg-slate-700/50 border-slate-600/50 hover:border-blue-500/40 text-slate-300 hover:text-white'}`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${urgency === u.id ? 'border-blue-500 bg-blue-500' : 'border-slate-500'}`}>
+                        <div
+                          className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${urgency === u.id ? 'border-blue-500 bg-blue-500' : 'border-slate-500'}`}
+                        >
                           {urgency === u.id && <div className="w-2 h-2 bg-white rounded-full" />}
                         </div>
                         <div className="text-left">
@@ -180,7 +218,9 @@ export default function RepairCalculator() {
                           <div className="text-xs text-slate-400">{u.desc}</div>
                         </div>
                       </div>
-                      {u.badge && <span className="text-xs text-orange-400 font-medium">{u.badge}</span>}
+                      {u.badge && (
+                        <span className="text-xs text-orange-400 font-medium">{u.badge}</span>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -194,25 +234,35 @@ export default function RepairCalculator() {
             )}
           </motion.div>
         ) : (
-          <motion.div key="result" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.3 }}>
+          <motion.div
+            key="result"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="text-center mb-5">
               <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg shadow-green-500/30">
                 <CheckCircle className="w-7 h-7 text-white" />
               </div>
               <p className="text-slate-400 text-sm mb-1">Предварительная стоимость ремонта</p>
               <div className="text-3xl sm:text-4xl font-bold text-white">
-                {price.min.toLocaleString()} — {price.max.toLocaleString()} <span className="text-xl text-slate-300">₽</span>
+                {price.min.toLocaleString()} — {price.max.toLocaleString()}{' '}
+                <span className="text-xl text-slate-300">₽</span>
               </div>
             </div>
 
             <div className="bg-slate-700/40 rounded-xl p-4 mb-4 space-y-2 text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">Оборудование:</span>
-                <span className="text-white font-medium">{selectedEquipment?.emoji} {selectedEquipment?.label}</span>
+                <span className="text-white font-medium">
+                  {selectedEquipment?.emoji} {selectedEquipment?.label}
+                </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">Проблема:</span>
-                <span className="text-white font-medium text-right max-w-[200px]">{selectedProblem?.label}</span>
+                <span className="text-white font-medium text-right max-w-[200px]">
+                  {selectedProblem?.label}
+                </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">Срочность:</span>
@@ -222,7 +272,10 @@ export default function RepairCalculator() {
 
             <div className="flex items-start gap-2 bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 mb-5">
               <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-              <p className="text-amber-200 text-xs leading-relaxed">Точная стоимость определяется после диагностики на месте. Диагностика бесплатна при согласовании ремонта.</p>
+              <p className="text-amber-200 text-xs leading-relaxed">
+                Точная стоимость определяется после диагностики на месте. Диагностика бесплатна при
+                согласовании ремонта.
+              </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-2.5">

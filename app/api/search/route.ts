@@ -32,7 +32,12 @@ export async function GET(request: Request) {
             title: service.category,
             description: service.description || '',
             url: `/services`,
-            relevance: calculateRelevance(service.category, service.description, service.items, lowerQuery)
+            relevance: calculateRelevance(
+              service.category,
+              service.description,
+              service.items,
+              lowerQuery
+            ),
           });
         }
       });
@@ -50,7 +55,12 @@ export async function GET(request: Request) {
           title: 'Главная',
           description: content.hero.title || '',
           url: '/',
-          relevance: calculateRelevance(content.hero.title, content.hero.description, [], lowerQuery)
+          relevance: calculateRelevance(
+            content.hero.title,
+            content.hero.description,
+            [],
+            lowerQuery
+          ),
         });
       }
     }
@@ -67,7 +77,12 @@ export async function GET(request: Request) {
           title: 'О компании',
           description: content.about.history || '',
           url: '/about',
-          relevance: calculateRelevance(content.about.history, content.about.mission, [], lowerQuery)
+          relevance: calculateRelevance(
+            content.about.history,
+            content.about.mission,
+            [],
+            lowerQuery
+          ),
         });
       }
     }
@@ -84,7 +99,7 @@ export async function GET(request: Request) {
             title: adv.title,
             description: adv.description || '',
             url: '/',
-            relevance: calculateRelevance(adv.title, adv.description, [], lowerQuery)
+            relevance: calculateRelevance(adv.title, adv.description, [], lowerQuery),
           });
         }
       });
@@ -102,7 +117,7 @@ export async function GET(request: Request) {
             title: faq.question,
             description: faq.answer || '',
             url: '/',
-            relevance: calculateRelevance(faq.question, faq.answer, [], lowerQuery)
+            relevance: calculateRelevance(faq.question, faq.answer, [], lowerQuery),
           });
         }
       });
@@ -118,7 +133,12 @@ export async function GET(request: Request) {
   }
 }
 
-function calculateRelevance(title: string, description: string, items: string[], query: string): number {
+function calculateRelevance(
+  title: string,
+  description: string,
+  items: string[],
+  query: string
+): number {
   let score = 0;
   const lowerTitle = title?.toLowerCase() || '';
   const lowerDescription = description?.toLowerCase() || '';
