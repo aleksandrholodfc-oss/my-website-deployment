@@ -14,11 +14,11 @@ export default function ContactForm() {
 
   React.useEffect(() => {
     fetch('/api/csrf')
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setCsrfToken(data.token);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error('Failed to fetch CSRF token:', err);
       });
   }, []);
@@ -26,7 +26,7 @@ export default function ContactForm() {
   const formatPhoneNumber = (value: string) => {
     const phoneNumber = value.replace(/\D/g, '');
     if (phoneNumber.length === 0) return '';
-    
+
     if (phoneNumber.length <= 1) {
       return `+${phoneNumber}`;
     }
@@ -89,8 +89,12 @@ export default function ContactForm() {
           <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-green-100 rounded-full flex items-center justify-center">
             <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-500" />
           </div>
-          <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2">Заявка отправлена!</h4>
-          <p className="text-gray-600 text-sm sm:text-base">Мастер перезвонит вам в ближайшее время.</p>
+          <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2">
+            Заявка отправлена!
+          </h4>
+          <p className="text-gray-600 text-sm sm:text-base">
+            Мастер перезвонит вам в ближайшее время.
+          </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
@@ -125,7 +129,9 @@ export default function ContactForm() {
               className={`w-full px-3 sm:px-4 py-2 sm:py-3 bg-white border ${errors.message ? 'border-red-500' : 'border-gray-300'} rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition-all text-sm sm:text-base`}
               placeholder="Опишите проблему с оборудованием..."
             />
-            {errors.message && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.message}</p>}
+            {errors.message && (
+              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.message}</p>
+            )}
           </div>
           <div className="hidden" aria-hidden="true">
             <input
@@ -152,15 +158,17 @@ export default function ContactForm() {
                 Я ознакомлен с{' '}
                 <Link href="/privacy" className="text-blue-600 hover:text-blue-700 underline">
                   Политикой конфиденциальности
-                </Link>
-                {' '}и{' '}
+                </Link>{' '}
+                и{' '}
                 <Link href="/terms" className="text-blue-600 hover:text-blue-700 underline">
                   Пользовательским соглашением
                 </Link>
                 , даю согласие на обработку персональных данных
               </span>
             </label>
-            {errors.consent && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.consent}</p>}
+            {errors.consent && (
+              <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.consent}</p>
+            )}
           </div>
         </form>
       )}

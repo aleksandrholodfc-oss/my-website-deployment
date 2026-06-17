@@ -51,7 +51,8 @@ export default function GalleryClient({ gallery }: GalleryClientProps) {
   };
 
   // Base64 gray-blue placeholder
-  const blurDataURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN88f7jfwAIdAL6m7yXWAAAAABJRU5ErkJggg==';
+  const blurDataURL =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN88f7jfwAIdAL6m7yXWAAAAABJRU5ErkJggg==';
 
   return (
     <>
@@ -174,7 +175,9 @@ export default function GalleryClient({ gallery }: GalleryClientProps) {
                 )}
               </div>
               <div className="p-4 sm:p-6 text-center">
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{selectedImage.title}</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                  {selectedImage.title}
+                </h3>
                 <p className="text-slate-400 text-sm sm:text-base mb-4">
                   {selectedImage.alt || 'Пример выполненной работы'}
                 </p>

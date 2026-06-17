@@ -191,14 +191,14 @@ pm2 restart my-website
 
 ## 6. Полезные команды
 
-| Команда | Описание |
-|---------|----------|
-| `pm2 status` | Статус всех процессов |
-| `pm2 logs my-website` | Логи сайта |
-| `pm2 restart my-website` | Перезапуск |
-| `pm2 stop my-website` | Остановка |
-| `sudo systemctl restart nginx` | Рестарт Nginx |
-| `sudo nginx -t` | Проверка конфига Nginx |
+| Команда                        | Описание               |
+| ------------------------------ | ---------------------- |
+| `pm2 status`                   | Статус всех процессов  |
+| `pm2 logs my-website`          | Логи сайта             |
+| `pm2 restart my-website`       | Перезапуск             |
+| `pm2 stop my-website`          | Остановка              |
+| `sudo systemctl restart nginx` | Рестарт Nginx          |
+| `sudo nginx -t`                | Проверка конфига Nginx |
 
 ---
 
